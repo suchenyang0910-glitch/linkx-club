@@ -1,0 +1,4 @@
+# CF Pages: 美化 URL — 去掉 index.html 尾部能正常访问
+/l1/posts  /l1/posts/index.html  200
+/l1/nodes  /l1/nodes/index.html  200
+/l1/resources  /l1/resources/index.html  200
