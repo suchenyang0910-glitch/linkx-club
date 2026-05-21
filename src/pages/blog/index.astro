@@ -1,7 +1,5 @@
 ---
-layout: ../../layouts/BaseLayout.astro
-title: "LinkX 博客 — 东南亚生活实用指南"
-description: "LinkX 博客：柬埔寨跨境汇款攻略、养宠物花费、手机借贷指南、加密货币投资、金边生活百科。金边华人社区原创内容。"
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <style>
@@ -16,28 +14,30 @@ description: "LinkX 博客：柬埔寨跨境汇款攻略、养宠物花费、手
   .blog-card .meta { color: var(--gray); font-size: 0.8rem; }
 </style>
 
-<h1 style="font-size: 2rem; margin-bottom: 0.5rem;">📝 LinkX 博客</h1>
-<p style="color: var(--gray); margin-bottom: 2rem;">金边华人生活实用指南 · 金融 · 宠物 · 生活 · 投资</p>
+<BaseLayout title="LinkX 博客 — 东南亚生活实用指南" description="LinkX 博客：柬埔寨跨境汇款攻略、养宠物花费、手机借贷指南。金边华人社区原创内容。">
+  <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">📝 LinkX 博客</h1>
+  <p style="color: var(--gray); margin-bottom: 2rem;">金边华人生活实用指南 · 金融 · 宠物 · 生活 · 投资</p>
 
-<div class="blog-list">
-  <div class="blog-card">
-    <div><span class="tag">💸 金融</span><span class="tag">💰 汇款</span></div>
-    <h2><a href="/blog/send-money-cambodia-2026">2026 柬埔寨跨境汇款全攻略</a></h2>
-    <div class="desc">对比 ABA、Wing、TrueMoney、USDT 四种汇款方式的手续费、到账时间和汇率差。金边华人实测数据，附详细操作步骤。</div>
-    <div class="meta">📅 2026年5月 · 📖 5分钟阅读</div>
-  </div>
+  <div class="blog-list">
+    <div class="blog-card">
+      <div><span class="tag">💸 金融</span><span class="tag">💰 汇款</span></div>
+      <h2><a href="/blog/send-money-cambodia-2026">2026 柬埔寨跨境汇款全攻略</a></h2>
+      <div class="desc">对比 ABA、Wing、TrueMoney、USDT 四种汇款方式的手续费、到账时间和汇率差。金边华人实测数据，附详细操作步骤。</div>
+      <div class="meta">📅 2026年5月 · 📖 5分钟阅读</div>
+    </div>
 
-  <div class="blog-card">
-    <div><span class="tag">🐱 宠物</span><span class="tag">🐶 生活</span></div>
-    <h2><a href="/blog/cambodia-pet-cost-2026">在柬埔寨养宠物一个月花多少钱？</a></h2>
-    <div class="desc">金边养猫养狗真实账单：月均花费、疫苗绝育费用、宠物用品购买渠道对比。2026 年柬埔寨本地物价完全解析。</div>
-    <div class="meta">📅 2026年5月 · 📖 4分钟阅读</div>
-  </div>
+    <div class="blog-card">
+      <div><span class="tag">🐱 宠物</span><span class="tag">🐶 生活</span></div>
+      <h2><a href="/blog/cambodia-pet-cost-2026">在柬埔寨养宠物一个月花多少钱？</a></h2>
+      <div class="desc">金边养猫养狗真实账单：月均花费、疫苗绝育费用、宠物用品购买渠道对比。2026 年柬埔寨本地物价完全解析。</div>
+      <div class="meta">📅 2026年5月 · 📖 4分钟阅读</div>
+    </div>
 
-  <div class="blog-card">
-    <div><span class="tag">🏦 借贷</span><span class="tag">📱 Fintech</span></div>
-    <h2><a href="/blog/cambodia-loan-no-bank-account-2026">柬埔寨没有银行账户怎么借钱？</a></h2>
-    <div class="desc">没有 ABA 也能借到钱。Wing 贷款、TrueMoney、P2P 平台全对比，月息 2-5%，最快当天到账，附避坑指南。</div>
-    <div class="meta">📅 2026年5月 · 📖 5分钟阅读</div>
+    <div class="blog-card">
+      <div><span class="tag">🏦 借贷</span><span class="tag">📱 Fintech</span></div>
+      <h2><a href="/blog/cambodia-loan-no-bank-account-2026">柬埔寨没有银行账户怎么借钱？</a></h2>
+      <div class="desc">没有 ABA 也能借到钱。Wing 贷款、TrueMoney、P2P 平台全对比，月息 2-5%，最快当天到账，附避坑指南。</div>
+      <div class="meta">📅 2026年5月 · 📖 5分钟阅读</div>
+    </div>
   </div>
-</div>
+</BaseLayout>
