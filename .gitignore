@@ -3,3 +3,13 @@ data/comments.jsonl
 .DS_Store
 .gitkeep
 rwa-cover.html
+<<<<<<< HEAD
+=======
+node_modules/
+playwright-report/
+test-results/
+.playwright/
+*.log
+
+testsprite_tests\tmp\config.json
+>>>>>>> f24a031 (feat: complete homepage redesign, UI/UX optimization, and Article CRUD API implementation)

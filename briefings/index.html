@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>每日简报 — linkx.club</title>
+  <meta name="description" content="东南亚每日简报：用中文快速筛选政策与地缘信号，强调影响判断而不是消息堆砌。">
+  <link rel="canonical" href="https://linkx.club/briefings/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="keywords" content="每日简报,东南亚,地缘政治,政策解读,中资出海">
+  <meta name="geo.region" content="KH">
+  <meta name="geo.placename" content="Phnom Penh">
+  <meta name="icbm" content="11.5564,104.9282">
+  <meta property="og:title" content="每日简报 — linkx.club">
+  <meta property="og:description" content="东南亚每日简报：用中文快速筛选政策与地缘信号，强调影响判断而不是消息堆砌。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://linkx.club/briefings/">
+  <meta property="og:image" content="/images/linkx-og.png">
+  <link rel="stylesheet" href="/styles/global.v4.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('open');}</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo"><img src="/logo.jpg" alt="LinkX" class="logo-img"> linkx.club</a>
+      <nav class="desktop-nav">
+        <a href="/">首页</a>
+        <a href="/briefings/">每日简报</a>
+        <a href="/analysis/">深度分析</a>
+        <a href="/guestbook/">讨论留言</a>
+      </nav>
+      <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <div class="sidebar" id="sidebar">
+    <a href="/">首页</a>
+    <a href="/briefings/">每日简报</a>
+    <a href="/analysis/">深度分析</a>
+    <a href="/guestbook/">讨论留言</a>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <h1>每日简报</h1>
+      <p class="tagline">不堆消息，只交付可读的信号与影响判断</p>
+      <p style="font-size:.92rem;color:#94a3b8">这一页包含样稿，用于演示“每日简报”结构。上线时可替换为真实每日内容。</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <p class="section-title">📅 近 7 天样稿</p>
+    <div class="article-grid" id="briefing-grid"><p style="color:#64748b;padding:20px;text-align:center">加载中...</p></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>&copy; 2026 linkx.club — 东南亚地缘分析</p></div>
+  </footer>
+
+  <script>
+  (async function(){
+    const cFlags = {vn:'🇻🇳',th:'🇹🇭',my:'🇲🇾',sg:'🇸🇬',kh:'🇰🇭'};
+    const cBgCols = {vn:'#dc262622',th:'#2563eb22',my:'#ca8a0422',sg:'#7c3aed22',kh:'#05966922'};
+    const cTxtCols = {vn:'#fca5a5',th:'#93c5fd',my:'#fde68a',sg:'#c4b5fd',kh:'#6ee7b7'};
+    try {
+      const res = await fetch('/api/articles');
+      const articles = await res.json();
+      const briefings = (articles || []).filter(a => (a.tag||'') === '简报').sort((a,b)=> (b.date||'').localeCompare(a.date||''));
+      const grid = document.getElementById('briefing-grid');
+      if (!briefings.length) { grid.innerHTML = '<p style="color:#64748b;padding:20px">暂无简报</p>'; return; }
+      grid.innerHTML = '';
+      briefings.forEach(a => {
+        const card = document.createElement('a');
+        card.href = '/article/' + a.id;
+        card.className = 'card';
+        card.innerHTML = '<span class="tag" style="background:' + (cBgCols[a.country]||'#334155') + ';color:' + (cTxtCols[a.country]||'#94a3b8') + '">' + (cFlags[a.country]||'🌏') + ' ' + (a.country_name||a.country.toUpperCase()) + ' · 简报</span><h3>' + a.title + '</h3><p>' + (a.description||'').slice(0,90) + '...</p>';
+        grid.appendChild(card);
+      });
+    } catch(e) {
+      document.getElementById('briefing-grid').innerHTML = '<p style="color:#64748b;padding:20px">加载失败，请刷新重试</p>';
+    }
+  })();
+  </script>
+</body>
+</html>
+

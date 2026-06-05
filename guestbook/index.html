@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>讨论留言 — linkx.club</title>
+  <meta name="description" content="匿名提交线索、问题与反馈。系统仅记录 Cookie 标识与脱敏 IP，用于频控与审核。">
+  <link rel="canonical" href="https://linkx.club/guestbook/">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="keywords" content="匿名留言,线索,讨论,东南亚地缘">
+  <link rel="stylesheet" href="/styles/global.v4.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('open');}</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo"><img src="/logo.jpg" alt="LinkX" class="logo-img"> linkx.club</a>
+      <nav class="desktop-nav">
+        <a href="/">首页</a>
+        <a href="/briefings/">每日简报</a>
+        <a href="/analysis/">深度分析</a>
+        <a href="/guestbook/">讨论留言</a>
+      </nav>
+      <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <div class="sidebar" id="sidebar">
+    <a href="/">首页</a>
+    <a href="/briefings/">每日简报</a>
+    <a href="/analysis/">深度分析</a>
+    <a href="/guestbook/">讨论留言</a>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <h1>讨论留言</h1>
+      <p class="tagline">线索池 · 问题池 · 读者需求池</p>
+      <p style="font-size:.92rem;color:#94a3b8">当前页面先落地结构与隐私规则；后续接入 SQLite + API 后开放真实提交与审核。</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <p class="section-title">🔒 隐私与脱敏规则</p>
+    <div class="card" style="margin-bottom:16px">
+      <p style="color:#94a3b8;font-size:.92rem;line-height:1.8">
+        - 只记录 Cookie 标识与来源 IP，用于频控与审计。<br>
+        - 展示层只显示脱敏字段：Cookie 只保留前 8 位，其余用 **** 替换；IP 仅展示片段（如 103.2*.1**.**）。<br>
+        - 敏感线索默认不公开，进入人工审核队列。<br>
+        - 本页不鼓励发布可识别个人信息或高敏感未证实爆料。
+      </p>
+    </div>
+
+    <p class="section-title">📝 留言表单（原型）</p>
+    <div class="card" style="margin-bottom:16px">
+      <div class="comment-form" style="margin-bottom:12px">
+        <input type="text" value="关注国家：越南/泰国/新加坡/马来西亚/柬埔寨/老挝" aria-label="country" />
+      </div>
+      <div class="comment-form" style="margin-bottom:12px">
+        <input type="text" value="线索类型：政策变化/行业风险/选题建议/求解读" aria-label="type" />
+      </div>
+      <div class="comment-form" style="flex-direction:column">
+        <input type="text" value="留言内容：你希望我们追踪的议题、你遇到的政策变化、你关心的行业风险" aria-label="content" />
+        <button type="button" disabled>提交（待接入 API）</button>
+      </div>
+      <p style="color:#64748b;font-size:.85rem;margin-top:10px">提示：文章页底部也会提供“文章级评论”入口，与本页留言墙并行。</p>
+    </div>
+
+    <p class="section-title">💬 展示示例（脱敏）</p>
+    <div class="article-grid">
+      <div class="card">
+        <span class="tag">🇰🇭 柬埔寨 · 线索</span>
+        <h3>建议做一期“政策执行差异”专题</h3>
+        <p>最近同一政策在不同地区执行差异很大，建议输出一个给中资老板看的风险清单。</p>
+        <p style="color:#64748b;font-size:.82rem;margin-top:10px">Cookie: lxg_83f1**** · IP: 103.2*.1**.**</p>
+      </div>
+      <div class="card">
+        <span class="tag">🇻🇳 越南 · 问题</span>
+        <h3>外资审批到底影响多大？</h3>
+        <p>想看一篇把“审批时间成本”写进模型的分析，尤其是制造业订单窗口期。</p>
+        <p style="color:#64748b;font-size:.82rem;margin-top:10px">Cookie: lxg_1bc9**** · IP: 27.7*.2**.**</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>&copy; 2026 linkx.club — 东南亚地缘分析</p></div>
+  </footer>
+</body>
+</html>
+
