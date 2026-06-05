@@ -14,49 +14,93 @@
 <script>function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('open');}</script>
 </head>
 <body>
-<header class="site-header"><div class="container"><a href="/" class="logo"><img src="/logo.jpg" alt="LinkX" class="logo-img">linkx.club</a><nav class="desktop-nav"><a href="/">首页</a><a href="/l1/posts/59/">最新专题</a></nav><button class="hamburger" onclick="toggleSidebar()">☰</button></div></header>
+<header class="site-header"><div class="container"><a href="/" class="logo"><img src="/logo.jpg" alt="LinkX" class="logo-img"> linkx.club</a><nav class="desktop-nav"><a href="/">首页</a><a href="#">全部文章</a></nav><button class="hamburger" onclick="toggleSidebar()">☰</button></div></header>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-<div class="sidebar" id="sidebar"><a href="/">首页</a><a href="/l1/posts/59/">🇰🇭 柬埔寨·运河</a><a href="/l1/posts/58/">🇸🇬 新加坡·家办</a><a href="/l1/posts/57/">🇲🇾 马来西亚·数据中心</a><a href="/l1/posts/56/">🇹🇭 泰国·EV</a><a href="/l1/posts/55/">🇻🇳 越南·供应链</a></div>
-<section class="hero"><div class="container"><h1>linkx.club</h1><p class="tagline">东南亚地缘分析 · 中资出海 · 投资决策</p><p style="font-size:.9rem;color:#64748b">🇻🇳 越南 · 🇹🇭 泰国 · 🇲🇾 马来西亚 · 🇸🇬 新加坡 · 🇰🇭 柬埔寨</p></div></section>
-<div class="container">
-<div class="country-nav">
-<a href="/l1/posts/59/" class="country-btn" style="border-color:#059669;color:#6ee7b7">🇰🇭 柬埔寨 — 扶南运河</a>
-<a href="/l1/posts/58/" class="country-btn" style="border-color:#7c3aed;color:#c4b5fd">🇸🇬 新加坡 — 家族办公室</a>
-<a href="/l1/posts/57/" class="country-btn" style="border-color:#ca8a04;color:#fde68a">🇲🇾 马来西亚 — 数据中心</a>
-<a href="/l1/posts/56/" class="country-btn" style="border-color:#2563eb;color:#93c5fd">🇹🇭 泰国 — EV 产业</a>
-<a href="/l1/posts/55/" class="country-btn" style="border-color:#dc2626;color:#fca5a5">🇻🇳 越南 — 供应链</a>
-</div>
+<div class="sidebar" id="sidebar"><a href="/">首页</a></div>
+<section class="hero"><div class="container"><h1>linkx.club</h1><p class="tagline">东南亚地缘分析 · 中资出海 · 投资决策</p><p id="hero-tags" style="font-size:.9rem;color:#64748b">加载中...</p></div></section>
+<div class="container" id="app">
+<div class="country-nav" id="country-nav">加载中...</div>
 <p class="section-title">🌟 最新专题</p>
-<div class="featured-grid">
-<a href="/l1/posts/59/" class="card-lg" style="border-color:#059669;position:relative">
-<span class="tag tag-kh">🇰🇭 柬埔寨 · 地缘</span>
-<h3>德崇扶南运河：中国在柬埔寨的棋盘</h3>
-<p>180 公里运河、$1.7B 投资、2028 年通航。柬埔寨 90% 物流不再绕道越南——物流成本降 25%，地缘格局彻底改变。我们正在经历的，是一次无声的湄公河权力转移。</p></a>
-<a href="/l1/posts/58/" class="card">
-<span class="tag tag-sg">🇸🇬 新加坡 · 家族办公室</span>
-<h3>新加坡家族办公室全景：谁在买什么？</h3>
-<p>2,000 家家办、$500 亿资产。三类客群画像 + 真实配置数据。</p></a>
-</div>
+<div class="featured-grid" id="featured-grid"><p style="color:#64748b;padding:20px;text-align:center">加载中...</p></div>
 <p class="section-title">📡 系列专题</p>
-<div class="article-grid">
-<a href="/l1/posts/57/" class="card">
-<span class="tag tag-my">🇲🇾 马来西亚 · 数据中心</span>
-<h3>马来西亚数据中心狂潮</h3>
-<p>AWS、Google、微软、字节跳动——科技巨头为何集体押注柔佛？</p></a>
-<a href="/l1/posts/56/" class="card">
-<span class="tag tag-th">🇹🇭 泰国 · 电动车</span>
-<h3>中国电动车品牌在泰国</h3>
-<p>BYD、长城、哪吒……7个品牌落地，日系车慢性失守。</p></a>
-<a href="/l1/posts/55/" class="card">
-<span class="tag tag-vn">🇻🇳 越南 · 供应链</span>
-<h3>越南中资供应链调查报告</h3>
-<p>FDI 增长 18%，南北越两套打法，搬过去的 vs 想搬的。</p></a>
-<a href="/l1/posts/59/" class="card">
-<span class="tag tag-kh">🇰🇭 柬埔寨 · 运河</span>
-<h3>贡布——柬埔寨的下一个经济走廊</h3>
-<p>运河终点区域的工业地产和物流机会。即将上线...</p></a>
+<div class="article-grid" id="article-grid"><p style="color:#64748b;padding:20px;text-align:center">加载中...</p></div>
 </div>
-</div>
-<footer class="site-footer"><div class="container"><p>&copy; 2026 linkx.club — 东南亚地缘分析 · 路飞</p></div></footer>
+<footer class="site-footer"><div class="container"><p>&copy; 2026 linkx.club — 东南亚地缘分析</p></div></footer>
+<script>
+(async function(){
+  const cFlags = {vn:'🇻🇳',th:'🇹🇭',my:'🇲🇾',sg:'🇸🇬',kh:'🇰🇭'};
+  const cNames = {vn:'越南',th:'泰国',my:'马来西亚',sg:'新加坡',kh:'柬埔寨'};
+  const cBorders = {vn:'#dc2626',th:'#2563eb',my:'#ca8a04',sg:'#7c3aed',kh:'#059669'};
+  const cTxtCols = {vn:'#fca5a5',th:'#93c5fd',my:'#fde68a',sg:'#c4b5fd',kh:'#6ee7b7'};
+  const cBgCols = {vn:'#dc262622',th:'#2563eb22',my:'#ca8a0422',sg:'#7c3aed22',kh:'#05966922'};
+
+  try {
+    const res = await fetch('/api/articles');
+    const articles = await res.json();
+    articles.sort((a,b) => b.id - a.id);
+
+    // Sidebar
+    const sidebar = document.getElementById('sidebar');
+    articles.forEach(a => {
+      const el = document.createElement('a');
+      el.href = '/article/' + a.id;
+      el.textContent = (cFlags[a.country]||'🌏') + ' ' + (a.country_name||a.country.toUpperCase()) + '·' + (a.tag||'');
+      sidebar.appendChild(el);
+    });
+
+    // Hero tags
+    document.getElementById('hero-tags').textContent = articles.map(a => (cFlags[a.country]||'🌏') + ' ' + (a.country_name||a.country.toUpperCase())).join(' · ');
+
+    // Country nav
+    const nav = document.getElementById('country-nav');
+    nav.innerHTML = '';
+    articles.forEach(a => {
+      const el = document.createElement('a');
+      el.href = '/article/' + a.id;
+      el.className = 'country-btn';
+      el.style.borderColor = cBorders[a.country]||'#334155';
+      el.style.color = cTxtCols[a.country]||'#94a3b8';
+      el.textContent = (cFlags[a.country]||'🌏') + ' ' + (a.country_name||a.country.toUpperCase()) + ' — ' + (a.tag||'');
+      nav.appendChild(el);
+    });
+
+    // Featured (first 2)
+    const fGrid = document.getElementById('featured-grid');
+    fGrid.innerHTML = '';
+    if (articles[0]) {
+      const a = articles[0];
+      const card = document.createElement('a');
+      card.href = '/article/' + a.id;
+      card.className = 'card-lg';
+      card.style.borderColor = cBorders[a.country]||'#3b82f6';
+      card.style.position = 'relative';
+      card.innerHTML = '<span class="tag" style="background:' + (cBgCols[a.country]||'#334155') + ';color:' + (cTxtCols[a.country]||'#94a3b8') + '">' + (cFlags[a.country]||'🌏') + ' ' + (a.country_name||a.country.toUpperCase()) + ' · ' + (a.tag||'') + '</span><h3>' + a.title + '</h3><p>' + (a.description||'') + '</p>';
+      fGrid.appendChild(card);
+    }
+    if (articles[1]) {
+      const a = articles[1];
+      const card = document.createElement('a');
+      card.href = '/article/' + a.id;
+      card.className = 'card';
+      card.innerHTML = '<span class="tag" style="background:' + (cBgCols[a.country]||'#334155') + ';color:' + (cTxtCols[a.country]||'#94a3b8') + '">' + (cFlags[a.country]||'🌏') + ' ' + (a.country_name||a.country.toUpperCase()) + ' · ' + (a.tag||'') + '</span><h3>' + a.title + '</h3><p>' + (a.description||'').slice(0,70) + '...</p>';
+      fGrid.appendChild(card);
+    }
+
+    // Grid (rest)
+    const grid = document.getElementById('article-grid');
+    grid.innerHTML = '';
+    for (let i = 2; i < articles.length; i++) {
+      const a = articles[i];
+      const card = document.createElement('a');
+      card.href = '/article/' + a.id;
+      card.className = 'card';
+      card.innerHTML = '<span class="tag" style="background:' + (cBgCols[a.country]||'#334155') + ';color:' + (cTxtCols[a.country]||'#94a3b8') + '">' + (cFlags[a.country]||'🌏') + ' ' + (a.country_name||a.country.toUpperCase()) + ' · ' + (a.tag||'') + '</span><h3>' + a.title + '</h3><p>' + (a.description||'').slice(0,70) + '...</p>';
+      grid.appendChild(card);
+    }
+  } catch(e) {
+    document.getElementById('featured-grid').innerHTML = '<p style="color:#64748b;padding:20px">加载失败，请刷新重试</p>';
+  }
+})();
+</script>
 </body>
 </html>
