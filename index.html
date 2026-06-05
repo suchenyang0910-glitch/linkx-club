@@ -17,6 +17,42 @@
 <header class="site-header"><div class="container"><a href="/" class="logo"><img src="/logo.jpg" alt="LinkX" class="logo-img"> linkx.club</a><nav class="desktop-nav"><a href="/">首页</a><a href="#">全部文章</a></nav><button class="hamburger" onclick="toggleSidebar()">☰</button></div></header>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 <div class="sidebar" id="sidebar"><a href="/">首页</a></div>
+<div class="banner-carousel">
+  <div class="banner-slide active" style="background:linear-gradient(135deg,#dc262622,#0f172a)">
+    <div class="banner-content">
+      <span class="banner-flag">🇻🇳</span>
+      <h2>越南 · 中资供应链调查</h2>
+      <p>深度解析中资企业在越南的布局、挑战与机遇</p>
+    </div>
+  </div>
+  <div class="banner-slide" style="background:linear-gradient(135deg,#2563eb22,#0f172a)">
+    <div class="banner-content">
+      <span class="banner-flag">🇹🇭</span>
+      <h2>泰国 · 中国 EV 品牌</h2>
+      <p>中国电动车品牌在泰国市场的竞争格局与前景</p>
+    </div>
+  </div>
+  <div class="banner-slide" style="background:linear-gradient(135deg,#ca8a0422,#0f172a)">
+    <div class="banner-content">
+      <span class="banner-flag">🇲🇾</span>
+      <h2>马来西亚 · 数据中心狂潮</h2>
+      <p>东南亚数字基础设施投资热潮中的马来西亚机会</p>
+    </div>
+  </div>
+  <div class="banner-slide" style="background:linear-gradient(135deg,#05966922,#0f172a)">
+    <div class="banner-content">
+      <span class="banner-flag">🇰🇭</span>
+      <h2>柬埔寨 · 德崇扶南运河</h2>
+      <p>德崇扶南运河项目的地缘经济影响深度分析</p>
+    </div>
+  </div>
+  <div class="banner-dots">
+    <span class="dot active" data-index="0"></span>
+    <span class="dot" data-index="1"></span>
+    <span class="dot" data-index="2"></span>
+    <span class="dot" data-index="3"></span>
+  </div>
+</div>
 <section class="hero"><div class="container"><h1>linkx.club</h1><p class="tagline">东南亚地缘分析 · 中资出海 · 投资决策</p><p id="hero-tags" style="font-size:.9rem;color:#64748b">加载中...</p></div></section>
 <div class="container" id="app">
 <div class="country-nav" id="country-nav">加载中...</div>
@@ -100,6 +136,34 @@
   } catch(e) {
     document.getElementById('featured-grid').innerHTML = '<p style="color:#64748b;padding:20px">加载失败，请刷新重试</p>';
   }
+})();
+
+// Banner carousel
+(function(){
+  const slides = document.querySelectorAll('.banner-slide');
+  const dots = document.querySelectorAll('.banner-dots .dot');
+  let current = 0;
+  let timer;
+
+  function goTo(idx) {
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    slides[idx].classList.add('active');
+    dots[idx].classList.add('active');
+    current = idx;
+  }
+
+  dots.forEach(d => {
+    d.addEventListener('click', () => goTo(parseInt(d.dataset.index)));
+  });
+
+  function autoAdvance() {
+    goTo((current + 1) % slides.length);
+  }
+
+  timer = setInterval(autoAdvance, 5000);
+  document.querySelector('.banner-carousel').addEventListener('mouseenter', () => clearInterval(timer));
+  document.querySelector('.banner-carousel').addEventListener('mouseleave', () => { timer = setInterval(autoAdvance, 5000); });
 })();
 </script>
 </body>
