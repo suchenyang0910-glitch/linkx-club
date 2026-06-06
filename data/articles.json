@@ -144,6 +144,22 @@
       "published": true,
       "created_at": "2026-06-05T04:38:22.304Z"
     }
+    ,
+    {
+      "id": 60,
+      "title": "【样稿】每日简报 Day 1：中美在东南亚的三条新信号",
+      "description": "样稿：演示“每日简报”结构（非实时新闻）。用三条信号快速解释政策变化对企业与投资的影响。",
+      "date": "2026-06-05",
+      "country": "sg",
+      "countryName": "新加坡",
+      "tag": "简报",
+      "cover": "/images/linkx-og.png",
+      "caption": "",
+      "content_html": "<p><strong>声明：</strong>本篇为结构样稿，用于演示简报写法，不代表实时新闻。</p><h2>今日一句判断</h2><p>东南亚并不缺新闻，缺的是把中美动作翻译成“对谁有影响”的判断框架。</p><h2>三条重点信号</h2><ol><li><strong>规则与合规：</strong>出口管制与审查的节奏变化，会直接影响供应链决策。</li><li><strong>资本与基础设施：</strong>项目融资与园区绑定加速，企业要关注回款与政治风险。</li><li><strong>国家分化：</strong>越南偏制造、新加坡偏资金与数据枢纽，差异会越来越大。</li></ol>",
+      "figures": [],
+      "published": true,
+      "created_at": "2026-06-05T04:38:22.304Z"
+    }
   ],
-  "nextId": 60
+  "nextId": 61
 }
