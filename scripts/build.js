@@ -8,9 +8,9 @@ const DIST = path.join(BASE, 'dist');
 fs.rmSync(DIST, { recursive: true, force: true });
 fs.mkdirSync(DIST, { recursive: true });
 
-// Copy html files
+// Copy source files
 for (const f of fs.readdirSync(BASE)) {
-  if (f.endsWith('.html') || f.endsWith('.txt') || f.endsWith('.xml')) {
+  if (f.endsWith('.html') || f.endsWith('.txt') || f.endsWith('.xml') || f === '_worker.js') {
     fs.copyFileSync(path.join(BASE, f), path.join(DIST, f));
     console.log('  ' + f);
   }
