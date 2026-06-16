@@ -303,7 +303,7 @@ footer .copy{color:var(--dim);font-size:12px}
       <a href="#pro" class="pro-link" data-i18n="nav.pro" style="display:none">✦ Pro</a>
       <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">🌐 <span class="lang-text">EN</span></button>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" ontouchstart="toggleMobileMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -1175,12 +1175,7 @@ for (var i = 0; i < langBtns.length; i++) {
   })
 }
 
-// Hamburger
-try {
-  document.getElementById('hamburger').addEventListener('click', function() {
-    document.getElementById('mobileMenu').classList.toggle('open')
-  })
-} catch(e) {}
+// Hamburger (legacy - use onclick in HTML instead)
 </script>
 
 <script>
@@ -1276,6 +1271,13 @@ function showReport(id) {
   window.location.hash = 'reports';
 }
 
+
+
+// Mobile menu toggle
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  if (menu) menu.classList.toggle('open');
+}
 </script>
 
 </body>
