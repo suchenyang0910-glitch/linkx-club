@@ -278,6 +278,7 @@ footer .links{display:flex;gap:20px;flex-wrap:wrap}
 footer .links a{color:var(--dim);text-decoration:none;font-size:13px;transition:color .15s}
 footer .links a:hover{color:var(--text)}
 footer .copy{color:var(--dim);font-size:12px}
+.page-section{min-height:80vh}
 </style>
 </head>
 <body>
@@ -286,10 +287,10 @@ footer .copy{color:var(--dim);font-size:12px}
   <div class="wrap">
     <a href="/" class="logo">🧭 <span data-i18n="nav.brand">SEA Compass</span></a>
     <nav class="nav">
-      <a href="/radar.html" data-i18n="nav.radar">📡 情报频道</a>
-      <a href="/bot.html" data-i18n="nav.bot">🤖 YiYao Bot</a>
-      <a href="/archive.html" data-i18n="nav.archive">📰 情报存档</a>
-      <a href="/pro.html" class="pro-link" data-i18n="nav.pro">✦ Pro</a>
+      <a href="#radar" data-i18n="nav.radar">📡 情报频道</a>
+      <a href="#bot" data-i18n="nav.bot">🤖 YiYao Bot</a>
+      <a href="#archive" data-i18n="nav.archive">📰 情报存档</a>
+      <a href="#pro" class="pro-link" data-i18n="nav.pro">✦ Pro</a>
       <button class="lang-btn" id="langToggle">🌐 <span id="langText">EN</span></button>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -298,10 +299,10 @@ footer .copy{color:var(--dim);font-size:12px}
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="/radar.html" data-i18n="nav.radar">📡 情报频道</a>
-  <a href="/bot.html" data-i18n="nav.bot">🤖 YiYao Bot</a>
-  <a href="/archive.html" data-i18n="nav.archive">📰 情报存档</a>
-  <a href="/pro.html" data-i18n="nav.pro">✦ Pro</a>
+  <a href="#radar" data-i18n="nav.radar">📡 情报频道</a>
+  <a href="#bot" data-i18n="nav.bot">🤖 YiYao Bot</a>
+  <a href="#archive" data-i18n="nav.archive">📰 情报存档</a>
+  <a href="#pro" data-i18n="nav.pro">✦ Pro</a>
   <button class="lang-btn" id="langToggleMobile">🌐 <span id="langTextM">EN</span></button>
 </div>
 
@@ -357,7 +358,7 @@ footer .copy{color:var(--dim);font-size:12px}
     </div>
 
     <div class="btns" style="justify-content:flex-start">
-      <a href="/radar.html" class="btn btn-primary" data-i18n="hero.cta1">📡 查看市场观察</a>
+      <a href="#radar" class="btn btn-primary" data-i18n="hero.cta1">📡 查看市场观察</a>
       <a href="https://t.me/YiYaoBot_bot" class="btn btn-secondary" data-i18n="hero.cta2" target="_blank">🧭 启动决策沙盘</a>
     </div>
   </div>
@@ -510,7 +511,7 @@ footer .copy{color:var(--dim);font-size:12px}
       <div class="wrap">
         <h2 data-i18n="cta.title">把信息变成你的商业版图</h2>
         <p data-i18n="cta.desc">不要再每天刷几十个网站寻找机会。让 SEA Compass 帮你建立系统化的决策优势。</p>
-        <a href="/pro.html" class="btn btn-primary" data-i18n="cta.btn">获取 Compass Pro 权限 <span style="font-family:'JetBrains Mono',monospace;color:rgba(0,0,0,0.6);margin-left:4px;font-size:18px">⤑</span></a>
+        <a href="#pro" class="btn btn-primary" data-i18n="cta.btn">获取 Compass Pro 权限 <span style="font-family:'JetBrains Mono',monospace;color:rgba(0,0,0,0.6);margin-left:4px;font-size:18px">⤑</span></a>
       </div>
     </div>
   </div>
@@ -520,15 +521,56 @@ footer .copy{color:var(--dim);font-size:12px}
 
 </main>
 
+<!-- RADAR -->
+<section id="content-radar" class="page-section" style="display:none">
+<div class="wrap" style="padding-top:100px;padding-bottom:60px">
+<div class="section-label" data-i18n="radar.label">/ RADAR</div>
+<h2 class="section-title" data-i18n="radar.title">SEA Compass Radar</h2>
+<p class="section-sub" data-i18n="radar.sub">每日情报推送 · AI 导航解读 · 市场观察 · 11 国覆盖</p>
+<div style="margin-top:48px;text-align:center"><a href="https://t.me/CompassSEA" class="btn btn-primary" target="_blank" data-i18n="radar.cta2">📡 订阅 Radar 频道</a></div>
+</div>
+</section>
+
+<!-- BOT -->
+<section id="content-bot" class="page-section" style="display:none">
+<div class="wrap" style="padding-top:100px;padding-bottom:60px">
+<div class="section-label" data-i18n="bot.label">/ YIYAO BOT</div>
+<h2 class="section-title" data-i18n="bot.title">你的 AI 决策参谋</h2>
+<p class="section-sub" data-i18n="bot.sub">输入问题 → 三步推演 → 输出方案</p>
+<div style="margin-top:48px;text-align:center"><a href="https://t.me/YiYaoBot_bot" class="btn btn-primary" target="_blank" data-i18n="bot.cta">🧭 启动决策沙盘</a></div>
+</div>
+</section>
+
+<!-- ARCHIVE -->
+<section id="content-archive" class="page-section" style="display:none">
+<div class="wrap" style="padding-top:100px;padding-bottom:60px">
+<div class="section-label" data-i18n="archive.label">/ ARCHIVE</div>
+<h2 class="section-title" data-i18n="archive.title">情报存档</h2>
+<p class="section-sub" data-i18n="archive.sub">浏览历史市场观察与 AI 分析解读</p>
+</div>
+</section>
+
+<!-- PRO -->
+<section id="content-pro" class="page-section" style="display:none">
+<div class="wrap" style="padding-top:100px;padding-bottom:60px">
+<div class="section-label" data-i18n="pro.label">/ COMPASS PRO</div>
+<h2 class="section-title" data-i18n="pro.title">面向严肃决策者</h2>
+<p class="section-sub" data-i18n="pro.sub">深度推演 · 策略报告 · 专属观察清单 · 优先情报</p>
+<div style="margin-top:48px;text-align:center"><a class="btn btn-primary" style="opacity:0.5;pointer-events:none" data-i18n="pro.cta">💎 预约 Pro 权限</a></div>
+</div>
+</section>
+
+
+
 
 <footer>
   <div class="wrap">
     <p class="copy">© 2026 SEA Compass. All rights reserved.</p>
     <div class="links">
-      <a href="/radar.html" data-i18n="footer.r">📡 Radar</a>
-      <a href="/bot.html" data-i18n="footer.b">🤖 YiYao Bot</a>
-      <a href="/archive.html" data-i18n="footer.i">📰 Intel</a>
-      <a href="/pro.html" data-i18n="footer.p">✦ Pro</a>
+      <a href="#radar" data-i18n="footer.r">📡 Radar</a>
+      <a href="#bot" data-i18n="footer.b">🤖 YiYao Bot</a>
+      <a href="#archive" data-i18n="footer.i">📰 Intel</a>
+      <a href="#pro" data-i18n="footer.p">✦ Pro</a>
     </div>
   </div>
 </footer>
@@ -769,5 +811,49 @@ try {
   })
 } catch(e) {}
 </script>
+
+<script>
+// ===== Page Router (hash-based SPA) =====
+var currentPage = null
+
+function routePage() {
+  var hash = window.location.hash.replace('#', '') || 'home'
+  if (hash === currentPage) return
+  currentPage = hash
+  
+  // Toggle main sections
+  var main = document.getElementById('page-home')
+  if (main) main.style.display = (hash === 'home') ? 'block' : 'none'
+  
+  // Toggle subpage sections
+  var pages = ['radar', 'bot', 'archive', 'pro']
+  for (var i = 0; i < pages.length; i++) {
+    var el = document.getElementById('content-' + pages[i])
+    if (el) el.style.display = (pages[i] === hash) ? 'block' : 'none'
+  }
+  
+  // Scroll top
+  window.scrollTo(0, 0)
+}
+
+window.addEventListener('hashchange', routePage)
+
+// Run on page load (after i18n)
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    if (window.location.hash) routePage()
+    // Fix intel cards - make them clickable
+    document.querySelectorAll('.intel-card').forEach(function(el) {
+      if (!el.onclick) {
+        el.style.cursor = 'pointer'
+        el.addEventListener('click', function() {
+          window.open('https://t.me/CompassSEA', '_blank')
+        })
+      }
+    })
+  }, 100)
+})
+</script>
+
 </body>
 </html>
