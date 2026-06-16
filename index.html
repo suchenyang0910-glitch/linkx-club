@@ -1603,6 +1603,62 @@ function showReportDetail(id) {
 </div>
 </div>
 </section>
+<script>
+
+
+// ===== Scroll Snap (one wheel tick = one section) =====
+(function(){
+  var snapping = false;
+  var sections = [];
+  
+  function getSections() {
+    // Only get visible scroll-sections (homepage sections, not hidden subpages)
+    return Array.from(document.querySelectorAll('.scroll-section')).filter(function(s) {
+      return s.offsetParent !== null;
+    });
+  }
+  
+  document.addEventListener('wheel', function(e) {
+    // Don't intervene on subpages (hash != home)
+    if (window.location.hash && window.location.hash !== '#home' && window.location.hash !== '') return;
+    
+    if (snapping) {
+      e.preventDefault();
+      return;
+    }
+    
+    var visSections = getSections();
+    if (visSections.length < 2) return;
+    
+    var viewportMid = window.innerHeight / 2;
+    var currentIdx = -1;
+    
+    for (var i = 0; i < visSections.length; i++) {
+      var rect = visSections[i].getBoundingClientRect();
+      if (rect.top <= viewportMid && rect.bottom > viewportMid) {
+        currentIdx = i;
+        break;
+      }
+    }
+    
+    if (currentIdx < 0) return;
+    
+    var targetIdx = e.deltaY > 0 
+      ? Math.min(currentIdx + 1, visSections.length - 1) 
+      : Math.max(currentIdx - 1, 0);
+    
+    if (targetIdx === currentIdx) return;
+    
+    e.preventDefault();
+    snapping = true;
+    
+    visSections[targetIdx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+    setTimeout(function() { snapping = false; }, 900);
+  }, { passive: false });
+})();
+
+</script>
 </body>
 </html>
 <!-- ===== REPORTS PAGE ===== -->
