@@ -284,12 +284,12 @@ footer .copy{color:var(--dim);font-size:12px}
 
 <header class="header" id="header">
   <div class="wrap">
-    <a href="#" class="logo" data-page="home">🧭 <span data-i18n="nav.brand">SEA Compass</span></a>
+    <a href="#home" class="logo">🧭 <span data-i18n="nav.brand">SEA Compass</span></a>
     <nav class="nav">
-      <a href="#" data-page="radar" data-i18n="nav.radar">📡 情报频道</a>
-      <a href="#" data-page="bot" data-i18n="nav.bot">🤖 YiYao Bot</a>
-      <a href="#" data-page="archive" data-i18n="nav.archive">📰 情报存档</a>
-      <a href="#" data-page="pro" class="pro-link" data-i18n="nav.pro">✦ Pro</a>
+      <a href="#radar" data-i18n="nav.radar">📡 情报频道</a>
+      <a href="#bot" data-i18n="nav.bot">🤖 YiYao Bot</a>
+      <a href="#archive" data-i18n="nav.archive">📰 情报存档</a>
+      <a href="#pro" class="pro-link" data-i18n="nav.pro">✦ Pro</a>
       <button class="lang-btn" id="langToggle">🌐 <span id="langText">EN</span></button>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -298,10 +298,10 @@ footer .copy{color:var(--dim);font-size:12px}
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#" data-page="radar" data-i18n="nav.radar">📡 情报频道</a>
-  <a href="#" data-page="bot" data-i18n="nav.bot">🤖 YiYao Bot</a>
-  <a href="#" data-page="archive" data-i18n="nav.archive">📰 情报存档</a>
-  <a href="#" data-page="pro" data-i18n="nav.pro">✦ Pro</a>
+  <a href="#radar" data-i18n="nav.radar">📡 情报频道</a>
+  <a href="#bot" data-i18n="nav.bot">🤖 YiYao Bot</a>
+  <a href="#archive" data-i18n="nav.archive">📰 情报存档</a>
+  <a href="#pro" data-i18n="nav.pro">✦ Pro</a>
   <button class="lang-btn" id="langToggleMobile">🌐 <span id="langTextM">EN</span></button>
 </div>
 
@@ -357,7 +357,7 @@ footer .copy{color:var(--dim);font-size:12px}
     </div>
 
     <div class="btns" style="justify-content:flex-start">
-      <a href="#" data-page="radar" class="btn btn-primary" data-i18n="hero.cta1">📡 查看市场观察</a>
+      <a href="#radar" class="btn btn-primary" data-i18n="hero.cta1">📡 查看市场观察</a>
       <a href="https://t.me/YiYaoBot_bot" class="btn btn-secondary" data-i18n="hero.cta2" target="_blank">🧭 启动决策沙盘</a>
     </div>
   </div>
@@ -510,7 +510,7 @@ footer .copy{color:var(--dim);font-size:12px}
       <div class="wrap">
         <h2 data-i18n="cta.title">把信息变成你的商业版图</h2>
         <p data-i18n="cta.desc">不要再每天刷几十个网站寻找机会。让 SEA Compass 帮你建立系统化的决策优势。</p>
-        <a href="#" data-page="pro" class="btn btn-primary" data-i18n="cta.btn">获取 Compass Pro 权限 <span style="font-family:'JetBrains Mono',monospace;color:rgba(0,0,0,0.6);margin-left:4px;font-size:18px">⤑</span></a>
+        <a href="#pro" class="btn btn-primary" data-i18n="cta.btn">获取 Compass Pro 权限 <span style="font-family:'JetBrains Mono',monospace;color:rgba(0,0,0,0.6);margin-left:4px;font-size:18px">⤑</span></a>
       </div>
     </div>
   </div>
@@ -524,68 +524,135 @@ footer .copy{color:var(--dim);font-size:12px}
 <main id="page-radar" class="page" style="display:none">
 <section class="hero" style="min-height:auto;padding-top:120px;padding-bottom:80px">
   <div class="wrap">
+    <nav style="margin-bottom:32px">
+      <a href="#home" style="display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);text-decoration:none;font-size:13px;transition:color .15s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">← <span data-i18n="nav.back">返回首页</span></a>
+    </nav>
     <div class="section-label" data-i18n="radar.label">/ RADAR</div>
     <h2 class="section-title" data-i18n="radar.title">SEA Compass Radar</h2>
     <p class="section-sub" data-i18n="radar.sub">每日情报推送 · AI 导航解读 · 市场观察 · 11 国覆盖</p>
-    
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:48px">
-      <div class="glass-card" style="text-align:center">
-        <div style="font-size:32px;margin-bottom:12px">🇰🇭</div>
-        <h3 style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px">柬埔寨 Cambodia</h3>
-        <p style="font-size:13px;color:var(--dim);margin-bottom:16px">@PHliveall</p>
-        <a href="https://t.me/PHliveall" target="_blank" class="btn btn-secondary" style="padding:8px 20px;font-size:12px">📡 订阅</a>
-      </div>
-      <div class="glass-card" style="text-align:center">
-        <div style="font-size:32px;margin-bottom:12px">🇻🇳</div>
-        <h3 style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px">越南 Vietnam</h3>
-        <p style="font-size:13px;color:var(--dim);margin-bottom:16px">@Tin24hVietNam</p>
-        <a href="https://t.me/Tin24hVietNam" target="_blank" class="btn btn-secondary" style="padding:8px 20px;font-size:12px">📡 订阅</a>
-      </div>
-      <div class="glass-card" style="text-align:center">
-        <div style="font-size:32px;margin-bottom:12px">🇨🇳</div>
-        <h3 style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px">中国 China</h3>
-        <p style="font-size:13px;color:var(--dim);margin-bottom:16px">@newslianbo</p>
-        <a href="https://t.me/newslianbo" target="_blank" class="btn btn-secondary" style="padding:8px 20px;font-size:12px">📡 订阅</a>
-      </div>
-      <div class="glass-card" style="text-align:center">
-        <div style="font-size:32px;margin-bottom:12px">🧭</div>
-        <h3 style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px">主频道 Main</h3>
-        <p style="font-size:13px;color:var(--dim);margin-bottom:16px">@CompassSEA</p>
-        <a href="https://t.me/CompassSEA" target="_blank" class="btn btn-primary" style="padding:8px 20px;font-size:12px">📡 订阅主频道</a>
-      </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:32px">
+      <a href="https://t.me/CompassSEA" target="_blank" class="glass-card" style="display:flex;align-items:center;gap:12px;padding:16px;text-decoration:none;cursor:pointer">
+        <span style="font-size:24px">🧭</span>
+        <div><div style="font-size:13px;font-weight:600;color:var(--text)">主频道</div><div style="font-size:11px;color:var(--dim)">@CompassSEA</div></div>
+      </a>
+      <a href="https://t.me/PHliveall" target="_blank" class="glass-card" style="display:flex;align-items:center;gap:12px;padding:16px;text-decoration:none;cursor:pointer">
+        <span style="font-size:24px">🇰🇭</span>
+        <div><div style="font-size:13px;font-weight:600;color:var(--text)">柬埔寨</div><div style="font-size:11px;color:var(--dim)">@PHliveall</div></div>
+      </a>
+      <a href="https://t.me/Tin24hVietNam" target="_blank" class="glass-card" style="display:flex;align-items:center;gap:12px;padding:16px;text-decoration:none;cursor:pointer">
+        <span style="font-size:24px">🇻🇳</span>
+        <div><div style="font-size:13px;font-weight:600;color:var(--text)">越南</div><div style="font-size:11px;color:var(--dim)">@Tin24hVietNam</div></div>
+      </a>
+      <a href="https://t.me/newslianbo" target="_blank" class="glass-card" style="display:flex;align-items:center;gap:12px;padding:16px;text-decoration:none;cursor:pointer">
+        <span style="font-size:24px">🇨🇳</span>
+        <div><div style="font-size:13px;font-weight:600;color:var(--text)">中国</div><div style="font-size:11px;color:var(--dim)">@newslianbo</div></div>
+      </a>
     </div>
-    
-    <div style="text-align:center">
+
+    <div style="display:flex;gap:4px;margin-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.06);flex-wrap:wrap">
+      <button class="tab-btn active" data-tab="today" style="padding:10px 20px;border:none;background:none;color:var(--text);font-size:14px;cursor:pointer;border-bottom:2px solid var(--gold);font-family:inherit">🕐 <span data-i18n="radar.tab1">今日</span></button>
+      <button class="tab-btn" data-tab="category" style="padding:10px 20px;border:none;background:none;color:var(--text-secondary);font-size:14px;cursor:pointer;font-family:inherit">📂 <span data-i18n="radar.tab2">按分类</span></button>
+      <button class="tab-btn" data-tab="country" style="padding:10px 20px;border:none;background:none;color:var(--text-secondary);font-size:14px;cursor:pointer;font-family:inherit">🌏 <span data-i18n="radar.tab3">按国家</span></button>
+    </div>
+
+    <div id="tab-today" class="intel-grid">
+      <div class="glass-card intel-card"><div class="meta"><span class="tag tag-policy">政策 / Policy</span><span class="date">2026-06-16 · Vietnam</span></div><h4 data-i18n="intel.title1">越南放宽数字游民签证条件</h4><p data-i18n="intel.desc1">针对IT和创意产业从业者，胡志明市出台试行政策...</p><div class="ai-insight"><p><span class="label">AI</span><span data-i18n="intel.ai1">利好出海服务商及办公地产。</span></p></div></div>
+      <div class="glass-card intel-card"><div class="meta"><span class="tag tag-market">市场 / Market</span><span class="date">2026-06-15 · Indonesia</span></div><h4 data-i18n="intel.title2">印尼电商新规实施两月后复盘</h4><p data-i18n="intel.desc2">社交电商与传统电商分离政策落地后...</p><div class="ai-insight"><p><span class="label">AI</span><span data-i18n="intel.ai2">纯流量打法失效，转向重资产运营。</span></p></div></div>
+      <div class="glass-card intel-card"><div class="meta"><span class="tag tag-visa">签证 / Visa</span><span class="date">2026-06-12 · Malaysia</span></div><h4 data-i18n="intel.title3">大马 MM2H 门槛微调</h4><p data-i18n="intel.desc3">内政部宣布对东盟申请人实行门槛八折优惠...</p><div class="ai-insight"><p><span class="label">AI</span><span data-i18n="intel.ai3">新山房产询盘量预计上涨。</span></p></div></div>
+      <div class="glass-card intel-card"><div class="meta"><span class="tag tag-invest">投资 / Investment</span><span class="date">2026-06-10 · Thailand</span></div><h4 data-i18n="intel.title4">曼谷 EEC 特区加码 AI 算力补贴</h4><p data-i18n="intel.desc4">东部经济走廊通过新案，对外资数据中心给予8年免税...</p><div class="ai-insight"><p><span class="label">AI</span><span data-i18n="intel.ai4">相关企业迎来6-12个月政策红利窗口。</span></p></div></div>
+    </div>
+
+    <div id="tab-category" class="tab-content" style="display:none">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px">
+        <span class="btn btn-secondary" style="padding:8px 16px;font-size:12px;cursor:default;background:rgba(212,175,55,0.1);border-color:rgba(212,175,55,0.2);color:var(--gold)">📜 政策</span>
+        <span class="btn btn-secondary" style="padding:8px 16px;font-size:12px;cursor:default;background:rgba(5,150,105,0.1);border-color:rgba(5,150,105,0.2);color:var(--emerald)">📊 市场</span>
+        <span class="btn btn-secondary" style="padding:8px 16px;font-size:12px;cursor:default;background:rgba(251,146,60,0.1);border-color:rgba(251,146,60,0.2);color:#fb923c">🛂 签证</span>
+        <span class="btn btn-secondary" style="padding:8px 16px;font-size:12px;cursor:default;background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.2);color:#60a5fa">💰 投资</span>
+      </div>
+      <p style="color:var(--dim);font-size:14px" data-i18n="radar.catHint">点击分类标签查看对应情报</p>
+    </div>
+
+    <div id="tab-country" class="tab-content" style="display:none">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:8px;margin-bottom:24px">
+        <span style="text-align:center;font-size:28px;cursor:default;padding:12px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);display:block" title="柬埔寨">🇰🇭</span>
+        <span style="text-align:center;font-size:28px;cursor:default;padding:12px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);display:block" title="越南">🇻🇳</span>
+        <span style="text-align:center;font-size:28px;cursor:default;padding:12px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);display:block" title="泰国">🇹🇭</span>
+        <span style="text-align:center;font-size:28px;cursor:default;padding:12px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);display:block" title="马来西亚">🇲🇾</span>
+        <span style="text-align:center;font-size:28px;cursor:default;padding:12px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);display:block" title="新加坡">🇸🇬</span>
+        <span style="text-align:center;font-size:28px;cursor:default;padding:12px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);display:block" title="印尼">🇮🇩</span>
+        <span style="text-align:center;font-size:28px;cursor:default;padding:12px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);display:block" title="菲律宾">🇵🇭</span>
+        <span style="text-align:center;font-size:28px;cursor:default;padding:12px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);display:block" title="缅甸">🇲🇲</span>
+        <span style="text-align:center;font-size:28px;cursor:default;padding:12px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);display:block" title="老挝">🇱🇦</span>
+        <span style="text-align:center;font-size:28px;cursor:default;padding:12px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);display:block" title="文莱">🇧🇳</span>
+        <span style="text-align:center;font-size:28px;cursor:default;padding:12px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);display:block" title="东帝汶">🇹🇱</span>
+      </div>
+      <p style="color:var(--dim);font-size:14px" data-i18n="radar.countryHint">点击国家查看当地最新情报</p>
+    </div>
+
+    <div style="text-align:center;margin-top:32px">
       <a href="https://t.me/CompassSEA" target="_blank" class="btn btn-primary" data-i18n="radar.cta">📡 订阅频道</a>
-      <a href="#" data-page="home" class="btn btn-secondary" style="margin-left:12px" data-i18n="nav.back">返回首页</a>
+      <a href="#home" class="btn btn-secondary" style="margin-left:12px" data-i18n="nav.back">返回首页</a>
     </div>
   </div>
 </section>
-</main>
-
-<!-- ===== PAGE BOT ===== -->
+</main><!-- ===== PAGE BOT ===== -->
 <main id="page-bot" class="page" style="display:none">
 <section class="hero" style="min-height:auto;padding-top:120px;padding-bottom:80px">
   <div class="wrap">
+    <nav style="margin-bottom:32px">
+      <a href="#home" style="display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);text-decoration:none;font-size:13px;transition:color .15s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">← <span data-i18n="nav.back">返回首页</span></a>
+    </nav>
     <div class="section-label" data-i18n="bot.label">/ YIYAO BOT</div>
     <h2 class="section-title" data-i18n="bot.title">你的 AI 决策参谋</h2>
     <p class="section-sub" data-i18n="bot.sub">输入问题 → 三步推演 → 输出方案。基于 SEA Compass 知识库与实时情报。</p>
-    
+
     <div class="steps" style="margin-bottom:48px">
       <div class="glass-card">
         <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);margin-bottom:8px" data-i18n="bot.s1t">Step 1 · 决策推演</div>
-        <p style="font-size:14px;color:var(--text-secondary);line-height:1.7" data-i18n="bot.s1d">根据当前东南亚市场环境，分析你的选项对应的三种可能路径，并评估每条路径的可行性。</p>
+        <p style="font-size:14px;color:var(--text-secondary);line-height:1.7" data-i18n="bot.s1d">分析你的选项对应的三种可能路径，并评估每条路径的可行性。</p>
+        <div style="margin-top:16px;padding:12px;background:rgba(0,0,0,0.2);border-radius:8px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="color:var(--emerald)">↳</span><span style="font-size:13px;color:var(--text-secondary)">路径 A：避开市中心，主打数字游民办公空间 <span class="match-badge match-green">85%</span></span></div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="color:rgba(255,255,255,0.5)">↳</span><span style="font-size:13px;color:var(--text-secondary)">路径 B：纯外卖模式，极致坪效 <span class="match-badge match-gold">70%</span></span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="color:rgba(244,63,94,0.7)">↳</span><span style="font-size:13px;color:var(--text-secondary)">路径 C：加盟连锁品牌 <span class="match-badge match-gold">45%</span></span></div>
+        </div>
       </div>
       <div class="glass-card">
         <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);margin-bottom:8px" data-i18n="bot.s2t">Step 2 · 市场判断</div>
-        <p style="font-size:14px;color:var(--text-secondary);line-height:1.7" data-i18n="bot.s2d">结合最新情报网络判断市场处于什么阶段：早期、增长、饱和还是衰退。</p>
+        <p style="font-size:14px;color:var(--text-secondary);line-height:1.7" data-i18n="bot.s2d">判断目标市场处于什么阶段：早期、增长、饱和还是衰退。</p>
+        <div style="margin-top:16px;padding:16px;background:rgba(0,0,0,0.2);border-radius:8px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:11px;color:var(--dim)">
+            <span data-i18n="bot.s2e">早期</span>
+            <span data-i18n="bot.s2g" style="color:var(--gold);font-weight:600">增长期 ← 当前</span>
+            <span data-i18n="bot.s2s">饱和</span>
+            <span data-i18n="bot.s2d2">衰退</span>
+          </div>
+          <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:3px;position:relative">
+            <div style="position:absolute;left:33%;width:4px;height:16px;background:var(--gold);border-radius:2px;top:-5px;box-shadow:0 0 10px rgba(212,175,55,0.5)"></div>
+            <div style="height:100%;width:66%;background:linear-gradient(to right, var(--emerald), var(--gold), #fb923c, var(--rose));border-radius:3px;opacity:0.6"></div>
+          </div>
+        </div>
       </div>
       <div class="glass-card">
         <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);margin-bottom:8px" data-i18n="bot.s3t">Step 3 · 风险分析</div>
         <p style="font-size:14px;color:var(--text-secondary);line-height:1.7" data-i18n="bot.s3d">列出每个选项的潜在风险点、影响程度和应对策略。</p>
+        <div style="margin-top:16px;display:grid;gap:8px">
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(244,63,94,0.05);border-radius:6px;border:1px solid rgba(244,63,94,0.15)">
+            <span style="font-size:14px;color:var(--rose)">⚠</span>
+            <span style="font-size:12px;color:var(--text-secondary)">竞争风险（高）：第一郡咖啡市场饱和，需差异化定位</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(251,146,60,0.05);border-radius:6px;border:1px solid rgba(251,146,60,0.15)">
+            <span style="font-size:14px;color:#fb923c">⚠</span>
+            <span style="font-size:12px;color:var(--text-secondary)">资金风险（中）：装修和前期运营成本需 6 个月缓冲</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(5,150,105,0.05);border-radius:6px;border:1px solid rgba(5,150,105,0.15)">
+            <span style="font-size:14px;color:var(--emerald)">✓</span>
+            <span style="font-size:12px;color:var(--text-secondary)">合规风险（低）：外籍持股餐饮无限制</span>
+          </div>
+        </div>
       </div>
     </div>
-    
+
     <div class="hero-example" style="margin-bottom:40px">
       <div class="ex-header">
         <div class="ex-dot"></div>
@@ -593,24 +660,19 @@ footer .copy{color:var(--dim);font-size:12px}
       </div>
       <div class="ex-body" style="text-align:center;padding:32px">
         <div style="font-size:48px;margin-bottom:16px">🤖</div>
-        <p style="font-size:17px;color:var(--text-secondary);line-height:1.7;margin-bottom:24px">
-          直接在 Telegram 搜索 <strong style="color:var(--text)">@YiYaoBot_bot</strong><br>
-          或点击下方按钮立即开始
-        </p>
+        <p style="font-size:17px;color:var(--text-secondary);line-height:1.7;margin-bottom:24px">直接在 Telegram 搜索 <strong style="color:var(--text)">@YiYaoBot_bot</strong><br>或点击下方按钮立即开始</p>
         <a href="https://t.me/YiYaoBot_bot" target="_blank" class="btn btn-primary">🧭 启动决策沙盘</a>
-        <a href="#" data-page="home" class="btn btn-secondary" style="margin-left:12px" data-i18n="nav.back">返回首页</a>
+        <a href="#home" class="btn btn-secondary" style="margin-left:12px" data-i18n="nav.back">返回首页</a>
       </div>
     </div>
-    
+
     <div class="glass-card" style="text-align:center;padding:24px">
       <p style="font-size:13px;color:var(--dim)" data-i18n="bot.tech">🤖 YiYao Bot 的每一次回答，背后都是</p>
       <p style="font-size:14px;color:var(--text-secondary);margin-top:8px" data-i18n="bot.tech2">📚 ~130 文件南洋智库 + 📡 11国情报网络 + 🧠 RAG 实时检索</p>
     </div>
   </div>
 </section>
-</main>
-
-<!-- ===== PAGE ARCHIVE ===== -->
+</main><!-- ===== PAGE ARCHIVE ===== -->
 <main id="page-archive" class="page" style="display:none">
 <section class="hero" style="min-height:auto;padding-top:120px;padding-bottom:80px">
   <div class="wrap">
@@ -647,7 +709,7 @@ footer .copy{color:var(--dim);font-size:12px}
     
     <div style="text-align:center">
       <a href="https://linkx.club/posts/" target="_blank" class="btn btn-secondary" style="margin-right:12px">📰 查看完整文章存档</a>
-      <a href="#" data-page="home" class="btn btn-secondary" data-i18n="nav.back">返回首页</a>
+      <a href="#home" class="btn btn-secondary" data-i18n="nav.back">返回首页</a>
     </div>
   </div>
 </section>
@@ -657,18 +719,21 @@ footer .copy{color:var(--dim);font-size:12px}
 <main id="page-pro" class="page" style="display:none">
 <section class="hero" style="min-height:auto;padding-top:120px;padding-bottom:80px">
   <div class="wrap">
+    <nav style="margin-bottom:32px">
+      <a href="#home" style="display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);text-decoration:none;font-size:13px;transition:color .15s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">← <span data-i18n="nav.back">返回首页</span></a>
+    </nav>
     <div class="section-label" data-i18n="pro.label">/ COMPASS PRO</div>
     <h2 class="section-title" data-i18n="pro.title">面向严肃决策者</h2>
     <p class="section-sub" data-i18n="pro.sub">深度推演 · 策略报告 · 专属观察清单 · 优先情报</p>
-    
+
     <div style="text-align:center;padding:48px 0;margin-bottom:32px">
       <div style="font-size:64px;margin-bottom:16px">💎</div>
       <h3 style="font-size:28px;color:var(--text);font-family:'Playfair Display','Noto Serif SC',serif;margin-bottom:8px" data-i18n="pro.priceTitle">Compass Pro</h3>
       <p style="color:var(--dim);font-size:16px;margin-bottom:32px" data-i18n="pro.priceSub">即将推出 · 预约优先体验</p>
       <a href="#" class="btn btn-primary" data-i18n="pro.cta">💎 预约 Pro 权限</a>
-      <a href="#" data-page="home" class="btn btn-secondary" style="margin-left:12px" data-i18n="nav.back">返回首页</a>
+      <a href="#home" class="btn btn-secondary" style="margin-left:12px" data-i18n="nav.back">返回首页</a>
     </div>
-    
+
     <h3 style="font-family:'Playfair Display','Noto Serif SC',serif;font-size:20px;color:var(--text);margin-bottom:16px;text-align:center" data-i18n="pro.compare">功能对比</h3>
     <div class="hero-example" style="margin-bottom:32px">
       <div class="ex-body" style="padding:0;overflow:hidden">
@@ -678,47 +743,46 @@ footer .copy{color:var(--dim);font-size:12px}
             <th style="padding:16px 20px;color:var(--gold);font-weight:600;text-align:center">Free</th>
             <th style="padding:16px 20px;color:var(--text);font-weight:600;text-align:center">Pro</th>
           </tr>
-          <tr style="border-bottom:1px solid rgba(255,255,255,0.03)">
-            <td style="padding:12px 20px;color:var(--text-secondary)" data-i18n="pro.f1">每日情报</td>
-            <td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅</td>
-            <td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(255,255,255,0.03)">
-            <td style="padding:12px 20px;color:var(--text-secondary)" data-i18n="pro.f2">AI 决策推演</td>
-            <td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅</td>
-            <td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(255,255,255,0.03)">
-            <td style="padding:12px 20px;color:var(--text-secondary)" data-i18n="pro.f3">历史记录</td>
-            <td style="padding:12px 20px;text-align:center;color:var(--dim)">—</td>
-            <td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(255,255,255,0.03)">
-            <td style="padding:12px 20px;color:var(--text-secondary)" data-i18n="pro.f4">周度策略报告</td>
-            <td style="padding:12px 20px;text-align:center;color:var(--dim)">—</td>
-            <td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅</td>
-          </tr>
-          <tr>
-            <td style="padding:12px 20px;color:var(--text-secondary)" data-i18n="pro.f5">专属观察清单</td>
-            <td style="padding:12px 20px;text-align:center;color:var(--dim)">—</td>
-            <td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅</td>
-          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:12px 20px;color:var(--text-secondary)" data-i18n="pro.f1">每日情报</td><td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅</td><td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅</td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:12px 20px;color:var(--text-secondary)" data-i18n="pro.f2">AI 决策推演</td><td style="padding:12px 20px;text-align:center;color:var(--text-secondary);font-size:11px">基础</td><td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅ 深度</td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:12px 20px;color:var(--text-secondary)" data-i18n="pro.f3">历史记录</td><td style="padding:12px 20px;text-align:center;color:var(--dim)">—</td><td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅</td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:12px 20px;color:var(--text-secondary)" data-i18n="pro.f4">周度策略报告</td><td style="padding:12px 20px;text-align:center;color:var(--dim)">—</td><td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅</td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.03)"><td style="padding:12px 20px;color:var(--text-secondary)" data-i18n="pro.f5">专属观察清单</td><td style="padding:12px 20px;text-align:center;color:var(--dim)">—</td><td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅</td></tr>
+          <tr><td style="padding:12px 20px;color:var(--text-secondary)" data-i18n="pro.f6">市场阶段分析</td><td style="padding:12px 20px;text-align:center;color:var(--dim)">—</td><td style="padding:12px 20px;text-align:center;color:var(--emerald)">✅</td></tr>
         </table>
       </div>
     </div>
-    
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:40px">
+      <div class="glass-card" style="text-align:center;padding:24px">
+        <div style="font-size:32px;margin-bottom:12px">🧠</div>
+        <h4 style="font-family:'Playfair Display','Noto Serif SC',serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px">深度推演</h4>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">多轮对话，历史回溯。每次推演可追溯完整推理过程。</p>
+      </div>
+      <div class="glass-card" style="text-align:center;padding:24px">
+        <div style="font-size:32px;margin-bottom:12px">📊</div>
+        <h4 style="font-family:'Playfair Display','Noto Serif SC',serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px">周度策略报告</h4>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">AI 自动生成策略报告，涵盖市场趋势、机会识别、风险预警。</p>
+      </div>
+      <div class="glass-card" style="text-align:center;padding:24px">
+        <div style="font-size:32px;margin-bottom:12px">📋</div>
+        <h4 style="font-family:'Playfair Display','Noto Serif SC',serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px">专属观察清单</h4>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">自定义监测国家、行业、关键词，第一时间通知变化。</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
       <div class="glass-card">
         <p style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px" data-i18n="pro.faq1q">Pro 什么时候上线？</p>
-        <p style="font-size:13px;color:var(--text-secondary)" data-i18n="pro.faq1a">正在进行内测，预计 2026 年 Q3 正式发布。</p>
+        <p style="font-size:13px;color:var(--text-secondary)" data-i18n="pro.faq1a">正在进行内测，预计 2026 年 Q3 正式发布。现在预约可享早鸟价格。</p>
       </div>
       <div class="glass-card">
         <p style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px" data-i18n="pro.faq2q">价格是多少？</p>
-        <p style="font-size:13px;color:var(--text-secondary)" data-i18n="pro.faq2a">定价尚未最终确定。月付和年付两种方案。</p>
+        <p style="font-size:13px;color:var(--text-secondary)" data-i18n="pro.faq2a">定价尚未最终确定。月付和年付两种方案，年付享受折扣。</p>
       </div>
       <div class="glass-card">
         <p style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px" data-i18n="pro.faq3q">免费版和 Pro 的区别？</p>
-        <p style="font-size:13px;color:var(--text-secondary)" data-i18n="pro.faq3a">免费版基础情报和推演，Pro 增加深度推演、策略报告等。</p>
+        <p style="font-size:13px;color:var(--text-secondary)" data-i18n="pro.faq3a">免费版基础情报和推演，Pro 增加深度推演、历史记录、策略报告和专属观察清单。</p>
       </div>
     </div>
   </div>
@@ -729,10 +793,10 @@ footer .copy{color:var(--dim);font-size:12px}
   <div class="wrap">
     <p class="copy">© 2026 SEA Compass. All rights reserved.</p>
     <div class="links">
-      <a href="#" data-page="radar" data-i18n="footer.r">📡 Radar</a>
-      <a href="#" data-page="bot" data-i18n="footer.b">🤖 YiYao Bot</a>
-      <a href="#" data-page="archive" data-i18n="footer.i">📰 Intel</a>
-      <a href="#" data-page="pro" data-i18n="footer.p">✦ Pro</a>
+      <a href="#radar" data-i18n="footer.r">📡 Radar</a>
+      <a href="#bot" data-i18n="footer.b">🤖 YiYao Bot</a>
+      <a href="#archive" data-i18n="footer.i">📰 Intel</a>
+      <a href="#pro" data-i18n="footer.p">✦ Pro</a>
     </div>
   </div>
 </footer>
