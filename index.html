@@ -305,7 +305,7 @@ footer.scroll-section{min-height:auto;padding:40px 0;justify-content:center}
 .hero .wrap{position:relative;z-index:2}
 /* ===== Section background image ===== */
 .sec-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none;z-index:0;opacity:0.5}
-.sec-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,var(--bg) 0%,transparent 20%,transparent 80%,var(--bg) 100%);pointer-events:none;z-index:1}
+
 .map-bg{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:1200px;height:800px;opacity:0.06;pointer-events:none;z-index:-1}
 
 /* ===== Hero BG (image) ===== */
@@ -317,31 +317,34 @@ footer.scroll-section{min-height:auto;padding:40px 0;justify-content:center}
 section.scroll-section{position:relative}
 /* ===== Section overlay system ===== */
 .sec-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none;z-index:0;opacity:0.5}
-.sec-overlay{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+
 section .wrap{position:relative;z-index:2}
 
 /* ===== Per-section backgrounds ===== */
-#pain .sec-overlay{background:linear-gradient(180deg,rgba(6,10,12,0.1) 0%,transparent 50%,rgba(6,10,12,0.2) 100%)}
+#pain 
 #pain .sec-img{opacity:0.5}
 #pain 
 
-#capabilities .sec-overlay{background:linear-gradient(135deg,rgba(6,10,12,0.92) 0%,rgba(6,15,20,0.88) 100%)}
+#capabilities 
 #capabilities 
 
-#knowledge-base .sec-overlay{background:linear-gradient(135deg,rgba(8,14,18,0.95) 0%,rgba(6,10,12,0.9) 100%)}
+#knowledge-base 
 #knowledge-base 
 
 #intel 
-#intel .sec-overlay{background:linear-gradient(135deg,rgba(6,10,12,0.92) 0%,rgba(10,15,18,0.88) 100%)}
+#intel 
 
 #latest-report 
-#latest-report .sec-overlay{background:linear-gradient(135deg,rgba(8,12,16,0.95) 0%,rgba(6,10,12,0.9) 100%)}
+#latest-report 
 
 #pro 
-#pro .sec-overlay{background:linear-gradient(135deg,rgba(6,10,12,0.9) 0%,rgba(15,10,6,0.88) 100%)}
+#pro 
 
-#cta .sec-overlay{background:linear-gradient(135deg,rgba(6,10,12,0.92) 0%,rgba(8,14,6,0.88) 100%)}
 #cta 
+#cta 
+
+/* ===== Section overlay - dark bottom for text readability ===== */
+.sec-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(6,10,12,0.1) 0%,rgba(6,10,12,0.4) 40%,rgba(6,10,12,0.75) 70%,rgba(6,10,12,0.9) 100%);pointer-events:none;z-index:1}
 </style>
 
 <!-- Google tag (gtag.js) -->
