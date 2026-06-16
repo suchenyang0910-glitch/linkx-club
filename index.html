@@ -301,7 +301,7 @@ footer .copy{color:var(--dim);font-size:12px}
       <a href="#archive" data-i18n="nav.archive">📰 情报存档</a>
   <a href="#reports" data-i18n="nav.reports">📊 专题报告</a>
       <a href="#pro" class="pro-link" data-i18n="nav.pro" style="display:none">✦ Pro</a>
-      <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">🌐 <span class="lang-text">EN</span></button>
+      <button class="lang-btn" id="langToggle" onclick="toggleLang()">🌐 <span class="lang-text">EN</span></button>
     </nav>
     <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" ontouchstart="toggleMobileMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -309,12 +309,12 @@ footer .copy{color:var(--dim);font-size:12px}
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#radar" data-i18n="nav.radar">📡 情报频道</a>
-  <a href="#bot" data-i18n="nav.bot">🤖 YiYao Bot</a>
-  <a href="#archive" data-i18n="nav.archive">📰 情报存档</a>
-  <a href="#reports" data-i18n="nav.reports">📊 专题报告</a>
-  <a href="#pro" data-i18n="nav.pro" style="display:none">✦ Pro</a>
-  <button class="lang-btn" id="langToggleMobile" onclick="toggleLanguage()">🌐 <span class="lang-text">中</span></button>
+  <a href="#radar" data-i18n="nav.radar" onclick="closeMobileMenu()">📡 情报频道</a>
+  <a href="#bot" data-i18n="nav.bot" onclick="closeMobileMenu()">🤖 YiYao Bot</a>
+  <a href="#archive" data-i18n="nav.archive" onclick="closeMobileMenu()">📰 情报存档</a>
+  <a href="#reports" data-i18n="nav.reports" onclick="closeMobileMenu()">📊 专题报告</a>
+  <a href="#pro" data-i18n="nav.pro" style="display:none" onclick="closeMobileMenu()">✦ Pro</a>
+  <button class="lang-btn" id="langToggleMobile" onclick="toggleLang()">🌐 <span class="lang-text">中</span></button>
 </div>
 
 <!-- ===== HERO ===== -->
@@ -1278,6 +1278,83 @@ function toggleMobileMenu() {
   var menu = document.getElementById('mobileMenu');
   if (menu) menu.classList.toggle('open');
 }
+
+
+// ===== Language Toggle (standalone, no dependencies) =====
+function toggleLang() {
+  var langEl = document.getElementById('sea-lang-state');
+  var current = langEl ? langEl.getAttribute('data-lang') : 'zh';
+  var newLang = current === 'zh' ? 'en' : 'zh';
+  
+  // Update state element
+  if (!langEl) {
+    var el = document.createElement('div');
+    el.id = 'sea-lang-state';
+    el.style.display = 'none';
+    document.body.appendChild(el);
+    langEl = el;
+  }
+  langEl.setAttribute('data-lang', newLang);
+  
+  // Update lang button text
+  document.querySelectorAll('.lang-text').forEach(function(el) {
+    el.textContent = newLang === 'zh' ? 'EN' : '中';
+  });
+  
+  // Update html lang attribute
+  document.documentElement.lang = newLang === 'zh' ? 'zh-CN' : 'en';
+  
+  // Update all i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    try {
+      if (locales && locales[newLang] && locales[newLang][key]) {
+        el.innerHTML = locales[newLang][key];
+      }
+    } catch(e) {}
+  });
+  
+  // Save preference
+  try { localStorage.setItem('sea-compass-lang', newLang); } catch(e) {}
+}
+
+// ===== Mobile Menu =====
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  if (menu) menu.classList.toggle('open');
+}
+
+function closeMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  if (menu) menu.classList.remove('open');
+}
+
+// Init lang on page load
+document.addEventListener('DOMContentLoaded', function() {
+  var saved = 'zh';
+  try { saved = localStorage.getItem('sea-compass-lang') || 'zh'; } catch(e) {}
+  
+  var langEl = document.createElement('div');
+  langEl.id = 'sea-lang-state';
+  langEl.style.display = 'none';
+  langEl.setAttribute('data-lang', saved);
+  document.body.appendChild(langEl);
+  
+  // Set initial state
+  document.querySelectorAll('.lang-text').forEach(function(el) {
+    el.textContent = saved === 'zh' ? 'EN' : '中';
+  });
+  document.documentElement.lang = saved === 'zh' ? 'zh-CN' : 'en';
+  
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    try {
+      if (locales && locales[saved] && locales[saved][key]) {
+        el.innerHTML = locales[saved][key];
+      }
+    } catch(e) {}
+  });
+})
 </script>
 
 </body>
