@@ -530,6 +530,33 @@ footer .copy{color:var(--dim);font-size:12px}
 
 <!-- ===== FOOTER ===== -->
 
+
+<section id="latest-report" style="padding:var(--section-gap) 0">
+<div class="wrap">
+<div class="section-label" style="text-align:center">/ LATEST REPORT</div>
+<h2 class="section-title" style="text-align:center">最新专题报告</h2>
+<p class="section-sub" style="text-align:center">每周3-5篇深度分析 · 基于AI情报网络</p>
+
+<div style="margin-top:48px;max-width:700px;margin-left:auto;margin-right:auto;background:linear-gradient(135deg,var(--card),var(--card-hover));border:1px solid var(--border-hover);border-radius:20px;padding:32px;cursor:pointer" onclick="window.location.hash='reports'">
+  <div style="display:flex;gap:8px;margin-bottom:12px">
+    <span style="background:rgba(239,68,68,0.1);color:#ef4444;padding:2px 10px;border-radius:4px;font-size:12px">贸易 · 关税</span>
+    <span style="color:var(--dim);font-size:13px">2026-06-16</span>
+  </div>
+  <h3 style="font-size:18px;font-weight:600;margin-bottom:8px">美国301关税压境：东南亚60国经济体的十字路口</h3>
+  <p style="color:var(--text-secondary);font-size:14px;line-height:1.7">美国USTR对全球60个经济体发起301调查，提议征收10%-12.5%关税。东南亚几乎全军覆没：柬埔寨、越南、泰国、马来西亚、印尼、新加坡、菲律宾全被列入名单。</p>
+  <div style="margin-top:16px;display:flex;gap:6px;flex-wrap:wrap">
+    <span style="background:rgba(212,175,55,0.1);color:var(--gold);padding:2px 10px;border-radius:4px;font-size:12px">#美国301关税</span>
+    <span style="background:rgba(212,175,55,0.1);color:var(--gold);padding:2px 10px;border-radius:4px;font-size:12px">#东南亚贸易</span>
+    <span style="background:rgba(212,175,55,0.1);color:var(--gold);padding:2px 10px;border-radius:4px;font-size:12px">#供应链</span>
+  </div>
+  <div style="margin-top:16px;text-align:right;color:var(--gold);font-size:14px">查看全部报告 →</div>
+</div>
+
+<div style="margin-top:32px;text-align:center">
+  <a href="javascript:void(0)" onclick="window.location.hash='reports'" style="color:var(--text-secondary);text-decoration:none;font-size:14px">📊 浏览所有专题报告</a>
+</div>
+</div>
+</section>
 </main>
 
 <!-- RADAR -->
@@ -889,32 +916,7 @@ footer .copy{color:var(--dim);font-size:12px}
 </section>
 
 <!-- ===== LATEST REPORT ===== -->
-<section id="latest-report" style="padding:var(--section-gap) 0">
-<div class="wrap">
-<div class="section-label" style="text-align:center">/ LATEST REPORT</div>
-<h2 class="section-title" style="text-align:center">最新专题报告</h2>
-<p class="section-sub" style="text-align:center">每周3-5篇深度分析 · 基于AI情报网络</p>
 
-<div style="margin-top:48px;max-width:700px;margin-left:auto;margin-right:auto;background:linear-gradient(135deg,var(--card),var(--card-hover));border:1px solid var(--border-hover);border-radius:20px;padding:32px;cursor:pointer" onclick="window.location.hash='reports'">
-  <div style="display:flex;gap:8px;margin-bottom:12px">
-    <span style="background:rgba(239,68,68,0.1);color:#ef4444;padding:2px 10px;border-radius:4px;font-size:12px">贸易 · 关税</span>
-    <span style="color:var(--dim);font-size:13px">2026-06-16</span>
-  </div>
-  <h3 style="font-size:18px;font-weight:600;margin-bottom:8px">美国301关税压境：东南亚60国经济体的十字路口</h3>
-  <p style="color:var(--text-secondary);font-size:14px;line-height:1.7">美国USTR对全球60个经济体发起301调查，提议征收10%-12.5%关税。东南亚几乎全军覆没：柬埔寨、越南、泰国、马来西亚、印尼、新加坡、菲律宾全被列入名单。</p>
-  <div style="margin-top:16px;display:flex;gap:6px;flex-wrap:wrap">
-    <span style="background:rgba(212,175,55,0.1);color:var(--gold);padding:2px 10px;border-radius:4px;font-size:12px">#美国301关税</span>
-    <span style="background:rgba(212,175,55,0.1);color:var(--gold);padding:2px 10px;border-radius:4px;font-size:12px">#东南亚贸易</span>
-    <span style="background:rgba(212,175,55,0.1);color:var(--gold);padding:2px 10px;border-radius:4px;font-size:12px">#供应链</span>
-  </div>
-  <div style="margin-top:16px;text-align:right;color:var(--gold);font-size:14px">查看全部报告 →</div>
-</div>
-
-<div style="margin-top:32px;text-align:center">
-  <a href="javascript:void(0)" onclick="window.location.hash='reports'" style="color:var(--text-secondary);text-decoration:none;font-size:14px">📊 浏览所有专题报告</a>
-</div>
-</div>
-</section>
 
 
 
@@ -1403,16 +1405,7 @@ function toggleMobileMenu() {
 }
 
 
-// ===== Language Toggle (standalone, no dependencies) =====
-function toggleMobileMenu() {
-  var menu = document.getElementById('mobileMenu');
-  if (menu) menu.classList.toggle('open');
-}
 
-function closeMobileMenu() {
-  var menu = document.getElementById('mobileMenu');
-  if (menu) menu.classList.remove('open');
-}
 
 // Init lang on page load
 document.addEventListener('DOMContentLoaded', function() {
