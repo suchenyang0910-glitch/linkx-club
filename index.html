@@ -1347,40 +1347,24 @@ function toggleMobileMenu() {
 
 // ===== Language Toggle (standalone, no dependencies) =====
 function toggleLang() {
-  var langEl = document.getElementById('sea-lang-state');
-  var current = langEl ? langEl.getAttribute('data-lang') : 'zh';
-  var newLang = current === 'zh' ? 'en' : 'zh';
+  var saved = 'zh';
+  try { saved = localStorage.getItem('sea-compass-lang') || 'zh'; } catch(e) {}
+  var newLang = saved === 'zh' ? 'en' : 'zh';
+  try { localStorage.setItem('sea-compass-lang', newLang); } catch(e) {}
   
-  // Update state element
-  if (!langEl) {
-    var el = document.createElement('div');
-    el.id = 'sea-lang-state';
-    el.style.display = 'none';
-    document.body.appendChild(el);
-    langEl = el;
-  }
-  langEl.setAttribute('data-lang', newLang);
-  
-  // Update lang button text
+  // Update button text
   document.querySelectorAll('.lang-text').forEach(function(el) {
     el.textContent = newLang === 'zh' ? 'EN' : '中';
   });
-  
-  // Update html lang attribute
   document.documentElement.lang = newLang === 'zh' ? 'zh-CN' : 'en';
   
-  // Update all i18n elements
-  document.querySelectorAll('[data-i18n]').forEach(function(el) {
-    var key = el.getAttribute('data-i18n');
-    try {
-      if (locales && locales[newLang] && locales[newLang][key]) {
-        el.innerHTML = locales[newLang][key];
-      }
-    } catch(e) {}
-  });
-  
-  // Save preference
-  try { localStorage.setItem('sea-compass-lang', newLang); } catch(e) {}
+  // Use the existing applyLang function to update data-i18n elements
+  if (typeof applyLang === 'function') {
+    // The old code uses currentLang variable and applyLang()
+    // Sync it and call applyLang
+    try { window.currentLang = newLang; } catch(e) {}
+    applyLang(newLang);
+  }
 }
 
 // ===== Mobile Menu =====
@@ -1399,26 +1383,16 @@ document.addEventListener('DOMContentLoaded', function() {
   var saved = 'zh';
   try { saved = localStorage.getItem('sea-compass-lang') || 'zh'; } catch(e) {}
   
-  var langEl = document.createElement('div');
-  langEl.id = 'sea-lang-state';
-  langEl.style.display = 'none';
-  langEl.setAttribute('data-lang', saved);
-  document.body.appendChild(langEl);
-  
-  // Set initial state
   document.querySelectorAll('.lang-text').forEach(function(el) {
     el.textContent = saved === 'zh' ? 'EN' : '中';
   });
   document.documentElement.lang = saved === 'zh' ? 'zh-CN' : 'en';
   
-  document.querySelectorAll('[data-i18n]').forEach(function(el) {
-    var key = el.getAttribute('data-i18n');
-    try {
-      if (locales && locales[saved] && locales[saved][key]) {
-        el.innerHTML = locales[saved][key];
-      }
-    } catch(e) {}
-  });
+  // Use applyLang for data-i18n elements
+  if (typeof applyLang === 'function') {
+    try { window.currentLang = saved; } catch(e) {}
+    applyLang(saved);
+  }
 })
 
 
