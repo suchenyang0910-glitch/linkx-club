@@ -978,7 +978,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (saved === 'zh' || saved === 'en') currentLang = saved
   else if ((navigator.language || '').slice(0,2) === 'en') currentLang = 'en'
   applyLang(currentLang)
-  switchPage('home')
+  routePage()
 })
 
 function toggleLanguage() {
@@ -1021,28 +1021,21 @@ document.addEventListener('click', function(e) {
   if (target) target.style.display = tabId === 'today' ? 'grid' : 'block'
 })
 
-// ===== SPA Routing =====
-function switchPage(page) {
-  var pages = document.querySelectorAll('.page')
-  for (var i = 0; i < pages.length; i++) { pages[i].style.display = 'none' }
-  var target = document.getElementById('page-' + page)
+// ===== Hash Routing (SPA) =====
+function routePage() {
+  var hash = location.hash.slice(1) || 'home'
+  document.querySelectorAll('.page').forEach(function(p) { p.style.display = 'none' })
+  var target = document.getElementById('page-' + hash)
   if (target) { target.style.display = 'block' }
   window.scrollTo(0, 0)
+  // Update nav active state
+  document.querySelectorAll('.nav a, .mobile-menu a').forEach(function(a) {
+    var href = a.getAttribute('href')
+    if (href === '#' + hash) { a.style.color = 'var(--text)' } else { a.style.color = 'var(--text-secondary)' }
+  })
   try { document.getElementById('mobileMenu').classList.remove('open') } catch(e) {}
-  return false
 }
-// Global nav click handler
-document.addEventListener('click', function(e) {
-  var t = e.target
-  while (t && t.tagName !== 'A') { t = t.parentElement }
-  if (!t) return
-  var page = t.getAttribute('data-page')
-  if (page) {
-    e.preventDefault()
-    switchPage(page)
-    return false
-  }
-})
+window.addEventListener('hashchange', routePage)
 
 // Language toggle
 var langBtns = document.querySelectorAll('.lang-btn')
