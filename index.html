@@ -1210,6 +1210,34 @@ var reports = {
 
 
 let currentLang = 'zh'
+function toggleLang() {
+  var saved = 'zh';
+  try { saved = localStorage.getItem('sea-compass-lang') || 'zh'; } catch(e) {}
+  var newLang = saved === 'zh' ? 'en' : 'zh';
+  try { localStorage.setItem('sea-compass-lang', newLang); } catch(e) {}
+  
+  // Update button text
+  document.querySelectorAll('.lang-text').forEach(function(el) {
+    el.textContent = newLang === 'zh' ? 'EN' : '中';
+  });
+  document.documentElement.lang = newLang === 'zh' ? 'zh-CN' : 'en';
+  
+  // Update all data-i18n elements using locales directly
+  try {
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (locales[newLang] && locales[newLang][key]) {
+        el.innerHTML = locales[newLang][key];
+      }
+    });
+  } catch(e) {
+    console.warn('Lang update error:', e);
+  }
+}
+
+// ===== Mobile Menu =====
+
+
 
 window.addEventListener('DOMContentLoaded', () => {
   const saved = localStorage.getItem('sea-compass-lang')
@@ -1376,28 +1404,6 @@ function toggleMobileMenu() {
 
 
 // ===== Language Toggle (standalone, no dependencies) =====
-function toggleLang() {
-  var saved = 'zh';
-  try { saved = localStorage.getItem('sea-compass-lang') || 'zh'; } catch(e) {}
-  var newLang = saved === 'zh' ? 'en' : 'zh';
-  try { localStorage.setItem('sea-compass-lang', newLang); } catch(e) {}
-  
-  // Update button text
-  document.querySelectorAll('.lang-text').forEach(function(el) {
-    el.textContent = newLang === 'zh' ? 'EN' : '中';
-  });
-  document.documentElement.lang = newLang === 'zh' ? 'zh-CN' : 'en';
-  
-  // Use the existing applyLang function to update data-i18n elements
-  if (typeof applyLang === 'function') {
-    // The old code uses currentLang variable and applyLang()
-    // Sync it and call applyLang
-    try { window.currentLang = newLang; } catch(e) {}
-    applyLang(newLang);
-  }
-}
-
-// ===== Mobile Menu =====
 function toggleMobileMenu() {
   var menu = document.getElementById('mobileMenu');
   if (menu) menu.classList.toggle('open');
