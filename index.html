@@ -948,6 +948,15 @@ const locales = {
     'hero.f3t':'风险分析','hero.f3d':'提前扫描合规、竞争与资金风险，并提供应对策略。',
     'hero.exLabel':'YiYao Intelligence Core','hero.exQ':'我要不要去越南胡志明市开一家精品咖啡店？',
     'hero.exA1':'<strong style="color:var(--text)">YiYao 战略推演：</strong> 胡志明市第一郡咖啡市场已趋于饱和（红海），但对高品质豆和独特空间设计的需求正在上升。',
+    'hero.exQ2':'现在去泰国曼谷做共享办公空间还有机会吗？',
+    'hero.exA2':'<strong style="color:var(--text)">YiYao 战略推演：</strong> 曼谷共享办公市场在疫情后快速复苏，甲级写字楼空置率降至12%。机会在于差异化定位：专注细分客群（如法律/金融专业人士）或选址次级商圈降低租金成本。',
+    'hero.exQ3':'柬埔寨金边现在适合买公寓投资吗？',
+    'hero.exA3':'<strong style="color:var(--text)">YiYao 战略推演：</strong> 金边公寓市场出现两极分化：高端住宅供过于求，但中端刚需住宅（$50K-100K）需求旺盛。建议关注BKK1和Toul Kork区域的中端公寓项目，租金回报率约6-8%。',
+    'hero.exQ4':'我想在马来西亚新山开一家中文补习学校，靠谱吗？',
+    'hero.exA4':'<strong style="color:var(--text)">YiYao 战略推演：</strong> 新山近年吸引大量新加坡外溢华人家庭，中文教育需求旺盛。市场存在供给缺口：目前以小型补习班为主，缺乏品牌化运营的机构。建议先做线上测试市场，验证后开实体店。',
+    'hero.exQ5':'印尼雅加达现在做跨境电商还有机会吗？',
+    'hero.exA5':'<strong style="color:var(--text)">YiYao 战略推演：</strong> 印尼电商市场增速放缓但基数庞大（2026年预计GMV $800亿）。纯流量打法已失效，机会在于：本地仓配一体化、高客单价品牌化运营、以及社交电商的内容化转型。',
+
     'hero.cta1':'📡 查看市场观察','hero.cta2':'🧭 启动决策沙盘',
     'pain.label':'/ YOUR REALITY','pain.title':'信息越来越多，<br>判断越来越难','pain.sub':'每天海量信息都在影响你的决策。真正的问题不是没有信息——而是不知道哪些信息值得关注。',
     'pain.card1t':'信息过载','pain.card1d':'每天几十个网站、频道、群组。看了等于没看。不知道信谁。',
@@ -1031,6 +1040,15 @@ const locales = {
     'hero.f3t':'Risk Scan','hero.f3d':'Proactively scan compliance, competition, and capital risks with mitigation plans.',
     'hero.exLabel':'YiYao Intelligence Core','hero.exQ':'Should I open a boutique coffee shop in Ho Chi Minh City, Vietnam?',
     'hero.exA1':'<strong style="color:var(--text)">YiYao Strategy Sim:</strong> The coffee market in D1 HCMC is highly saturated (Red Ocean), but demand for high-quality beans and unique spatial design is rising.',
+    'hero.exQ2':'Is there still an opportunity for coworking spaces in Bangkok?',
+    'hero.exA2':'<strong style="color:var(--text)">YiYao Strategy Sim:</strong> Bangkok coworking market has recovered post-COVID with vacancy at 12%. Opportunity lies in niche positioning or secondary locations.',
+    'hero.exQ3':'Is now a good time to buy an apartment in Phnom Penh?',
+    'hero.exA3':'<strong style="color:var(--text)">YiYao Strategy Sim:</strong> Phnom Penh condo market: luxury oversupplied but mid-range has strong demand. Focus on BKK1/Toul Kork with 6-8% rental yield.',
+    'hero.exQ4':'Should I open a Chinese tutoring school in Johor Bahru?',
+    'hero.exA4':'<strong style="color:var(--text)">YiYao Strategy Sim:</strong> Growing Chinese diaspora families in JB create demand. Market lacks branded operators. Start online first.',
+    'hero.exQ5':'Is there still e-commerce opportunity in Jakarta?',
+    'hero.exA5':'<strong style="color:var(--text)">YiYao Strategy Sim:</strong> Indonesia e-commerce base is massive ($80B GMV 2026). Pure traffic dead. Opportunity in: local fulfillment, high-AOV branded products, content-driven commerce.',
+
     'hero.cta1':'📡 View Market Intel','hero.cta2':'🧭 Launch Sandbox',
     'pain.label':'/ YOUR REALITY','pain.title':'More information,<br>harder decisions','pain.sub':'Every day, news, policies, and rumors pull you in different directions. The real problem isn\'t a lack of information — it\'s knowing what actually matters.',
     'pain.card1t':'Info Overload','pain.card1d':'Dozens of sites, channels, groups daily. You read everything but don\'t know who to trust.',
@@ -1474,6 +1492,30 @@ function showReportDetail(id) {
   window.location.hash = 'report-' + id;
   window.scrollTo(0, 0);
 }
+
+// ===== Rotating Hero Q&A (changes based on day of year) =====
+(function(){
+  var qaKeys = ['0', '1', '2', '3', '4'];
+  var today = new Date();
+  var dayNum = Math.floor((today - new Date(today.getFullYear(),0,0)) / 86400000);
+  var idx = dayNum % 5;
+  
+  var lang = 'zh';
+  try { lang = localStorage.getItem('sea-compass-lang') || 'zh'; } catch(e) {}
+  
+  var qKey = 'hero.exQ' + (idx === 0 ? '' : (idx + 1));
+  var aKey = 'hero.exA' + (idx === 0 ? '1' : String(idx + 1));
+  
+  var qEl = document.querySelector('[data-i18n="hero.exQ"]');
+  var aEl = document.querySelector('[data-i18n="hero.exA1"]');
+  
+  if (qEl && locales && locales[lang] && locales[lang][qKey]) {
+    qEl.innerHTML = locales[lang][qKey];
+  }
+  if (aEl && locales && locales[lang] && locales[lang][aKey]) {
+    aEl.innerHTML = locales[lang][aKey];
+  }
+})();
 </script>
 
 
