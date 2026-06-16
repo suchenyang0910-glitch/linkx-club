@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEA Compass · 官网模板展示</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+:root{--bg:#0a0a0f;--card:#14141e;--card-hover:#1a1a28;--border:#1e1e2c;--border-hover:#2a2a3e;--text:#e8e8ed;--text-secondary:#9d9db0;--dim:#7a7a8a;--purple:#6c5ce7;--purple-light:#8b7cf7;--teal:#00cec9;--orange:#fdcb6e;--success:#00b894}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ===== Header ===== */
+.header{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;transition:all .3s;height:64px;display:flex;align-items:center;justify-content:center}
+.header.scrolled{background:rgba(10,10,15,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.header-inner{width:100%;max-width:1200px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px;color:var(--text);text-decoration:none}
+.logo span{background:linear-gradient(135deg,var(--purple),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav{display:flex;align-items:center;gap:28px}
+.nav a{color:var(--dim);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s}
+.nav a:hover{color:var(--text)}
+.lang-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--dim);font-size:13px;cursor:pointer;transition:all .15s;font-family:inherit}
+.lang-btn:hover{border-color:var(--purple);color:var(--text)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .2s}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(10,10,15,.96);backdrop-filter:blur(16px);padding:24px;border-bottom:1px solid var(--border);z-index:99;flex-direction:column;gap:16px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--dim);text-decoration:none;font-size:16px;padding:8px 0}
+.mobile-menu .lang-btn{align-self:flex-start}
+
+/* ===== Section common ===== */
+section{padding:0 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-pad{padding:96px 0}
+@media(max-width:768px){.section-pad{padding:64px 0}}
+.section-label{display:inline-flex;align-items:center;gap:6px;color:var(--purple);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.section-title{font-size:clamp(26px,3.5vw,40px);font-weight:700;line-height:1.2;margin-bottom:16px;letter-spacing:-0.3px}
+.section-sub{color:var(--dim);font-size:16px;max-width:560px;line-height:1.8;margin-bottom:48px}
+
+/* ===== Hero ===== */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:64px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-bg .orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.3}
+.hero-bg .orb1{width:600px;height:600px;background:var(--purple);top:-200px;right:-200px}
+.hero-bg .orb2{width:400px;height:400px;background:var(--teal);bottom:-100px;left:-100px}
+.hero .section-inner{position:relative;z-index:2;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;border:1px solid rgba(108,92,231,.3);background:rgba(108,92,231,.08);color:var(--purple-light);font-size:13px;font-weight:500;margin-bottom:28px}
+.hero h1{font-size:clamp(36px,5.5vw,64px);font-weight:700;line-height:1.1;margin-bottom:20px;letter-spacing:-0.5px}
+.hero h1 .gradient{background:linear-gradient(135deg,var(--purple-light),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .desc{font-size:clamp(16px,2vw,20px);color:var(--text-secondary);max-width:600px;line-height:1.8;margin-bottom:36px}
+.hero-pains{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.hero-pains span{padding:8px 16px;border-radius:8px;background:var(--card);border:1px solid var(--border);font-size:13px;color:var(--dim)}
+.hero-pains span strong{color:var(--orange)}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;transition:all .2s;cursor:pointer;border:none;font-family:inherit}
+.btn-primary{background:var(--purple);color:#fff}
+.btn-primary:hover{opacity:.88;transform:translateY(-2px);box-shadow:0 8px 24px rgba(108,92,231,.3)}
+.btn-secondary{background:var(--card);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--purple);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--dim);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--dim);color:var(--text)}
+
+/* ===== Pain ===== */
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:48px}
+@media(max-width:700px){.pain-grid{grid-template-columns:1fr}}
+.pain-card{padding:32px;border-radius:14px;background:var(--card);border:1px solid var(--border);position:relative}
+.pain-card .icon{font-size:32px;margin-bottom:12px}
+.pain-card h3{font-size:17px;font-weight:600;margin-bottom:8px}
+.pain-card p{font-size:14px;color:var(--dim);line-height:1.7}
+.pain-card .highlight{color:var(--orange);font-weight:600}
+
+/* ===== Value Flow ===== */
+.flow-wrap{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:40px 0}
+.flow-item{display:flex;align-items:center;gap:10px;padding:16px 24px;border-radius:12px;background:var(--card);border:1px solid var(--border);font-size:14px;font-weight:500;color:var(--text-secondary)}
+.flow-item .dot{width:8px;height:8px;border-radius:50%}
+.flow-arrow{color:var(--purple);font-size:20px;font-weight:700}
+@media(max-width:700px){.flow-wrap{flex-direction:column}.flow-arrow{transform:rotate(90deg)}}
+
+/* ===== Capabilities ===== */
+.caps{display:flex;flex-direction:column;gap:20px}
+.cap-card{display:grid;grid-template-columns:auto 1fr;gap:24px;padding:36px;border-radius:16px;background:var(--card);border:1px solid var(--border);transition:all .25s;cursor:default}
+.cap-card:hover{border-color:var(--border-hover);transform:translateY(-2px);background:var(--card-hover)}
+.cap-card .emoji{font-size:44px;line-height:1}
+.cap-card .body h3{font-size:20px;font-weight:600;margin-bottom:8px}
+.cap-card .body p{font-size:14px;color:var(--dim);line-height:1.8}
+.cap-card .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.cap-card .tags span{padding:4px 14px;border-radius:100px;background:rgba(108,92,231,.12);color:var(--purple-light);font-size:12px;font-weight:500}
+@media(max-width:600px){.cap-card{grid-template-columns:1fr;gap:12px;padding:24px}}
+
+/* ===== Products ===== */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:800px){.prod-grid{grid-template-columns:1fr}}
+.prod-card{padding:36px 28px;border-radius:16px;background:var(--card);border:1px solid var(--border);text-align:center;transition:all .25s;display:flex;flex-direction:column;align-items:center}
+.prod-card:hover{border-color:var(--border-hover);transform:translateY(-3px);background:var(--card-hover)}
+.prod-card .icon{font-size:40px;margin-bottom:14px}
+.prod-card h3{font-size:18px;font-weight:600;margin-bottom:8px}
+.prod-card p{font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:16px;flex:1}
+.prod-card .badge{display:inline-block;padding:5px 18px;border-radius:100px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.badge-free{background:rgba(0,206,201,.12);color:var(--teal)}
+.badge-premium{background:rgba(253,203,110,.12);color:var(--orange)}
+.prod-card.featured{border-color:rgba(108,92,231,.3);background:linear-gradient(180deg,rgba(108,92,231,.06),var(--card))}
+
+/* ===== Steps ===== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:700px){.steps{grid-template-columns:1fr}}
+.step{padding:28px;border-radius:14px;background:var(--card);border:1px solid var(--border);transition:all .2s}
+.step:hover{border-color:var(--border-hover)}
+.step .num{color:var(--purple);font-size:12px;font-weight:700;letter-spacing:2px;margin-bottom:10px}
+.step h4{font-size:17px;font-weight:600;margin-bottom:8px}
+.step p{font-size:13px;color:var(--dim);line-height:1.7}
+.step .ex{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.step .ex span{padding:3px 12px;border-radius:100px;background:rgba(255,255,255,.04);font-size:11px;color:var(--text-secondary)}
+
+/* ===== Audience ===== */
+.aud-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.aud-grid{grid-template-columns:1fr}}
+.aud-card{padding:24px;border-radius:12px;background:var(--card);border:1px solid var(--border);transition:all .2s}
+.aud-card:hover{border-color:var(--border-hover)}
+.aud-card .emoji{font-size:28px;margin-bottom:6px}
+.aud-card h4{font-size:15px;font-weight:600}
+.aud-card p{font-size:13px;color:var(--dim);margin-top:4px}
+
+/* ===== Philosophy ===== */
+.phil-card{padding:48px 40px;border-radius:20px;background:var(--card);border:1px solid var(--border);text-align:center}
+.phil-card p{font-size:16px;color:var(--dim);line-height:2;max-width:600px;margin:0 auto}
+.phil-card .em{color:var(--text);font-weight:600}
+.phil-card .accent{color:var(--purple-light);font-size:19px;font-weight:600;margin-top:12px}
+
+/* ===== CTA ===== */
+.cta-section{text-align:center;padding:96px 0}
+.cta-section h2{font-size:clamp(28px,4vw,42px);margin-bottom:12px}
+.cta-section p{color:var(--dim);margin-bottom:36px;font-size:16px}
+.cta-section .btns{justify-content:center}
+
+/* ===== Footer ===== */
+footer{border-top:1px solid var(--border);padding:48px 24px;text-align:center}
+footer .inner{max-width:1200px;margin:0 auto}
+footer .links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:16px}
+footer .links a{color:var(--dim);text-decoration:none;font-size:13px;transition:color .15s}
+footer .links a:hover{color:var(--text)}
+footer .copy{color:var(--dim);font-size:12px}
+
+/* ===== Demo indicator ===== */
+.demo-banner{background:linear-gradient(135deg,#6c5ce7,#00cec9);color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:500;position:relative;z-index:101}
+.demo-banner strong{margin:0 6px}
+</style>
+</head>
+<body>
+
+<!-- 演示提示横幅 -->
+<div class="demo-banner">
+  🧭 官网模板展示 · 点击 <strong>🌐 EN / 中文</strong> 切换语言
+</div>
+
+<!-- Header -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="#" class="logo">🧭 <span>SEA Compass</span></a>
+    <nav class="nav">
+      <a href="#" data-i18n="nav.radar">📡 情报</a>
+      <a href="#" data-i18n="nav.bot">🤖 YiYao Bot</a>
+      <a href="#" data-i18n="nav.pro">💎 Pro</a>
+      <button class="lang-btn" id="langToggle">🌐 EN</button>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" data-i18n="nav.radar">📡 情报</a>
+  <a href="#" data-i18n="nav.bot">🤖 YiYao Bot</a>
+  <a href="#" data-i18n="nav.pro">💎 Pro</a>
+  <button class="lang-btn" id="langToggleMobile">🌐 EN</button>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero section-pad" id="hero">
+  <div class="hero-bg"><div class="orb orb1"></div><div class="orb orb2"></div></div>
+  <div class="section-inner">
+    <div class="hero-badge">🧭 <span data-i18n="hero.badge">SEA Compass</span></div>
+    <h1>
+      <span class="gradient" data-i18n="hero.headline">东南亚华人<br>决策操作系统</span>
+    </h1>
+    <p class="desc" data-i18n="hero.desc">每天追踪东盟市场变化，结合AI分析与决策推演，<br>帮助你判断：去哪里发展、做什么生意、进入哪个市场、什么时候行动。</p>
+    <div class="hero-pains">
+      <span data-i18n="hero.pain1">🌪️ <strong>信息太多</strong> 无从判断</span>
+      <span data-i18n="hero.pain2">📡 <strong>新闻政策</strong> 每天变化</span>
+      <span data-i18n="hero.pain3">🎯 <strong>机会真假</strong> 难以分辨</span>
+    </div>
+    <div class="btns">
+      <a href="#" class="btn btn-primary" data-i18n="hero.cta1">📡 查看最新情报</a>
+      <a href="#" class="btn btn-secondary" data-i18n="hero.cta2">🤖 打开 YiYao Bot</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PAIN ===== -->
+<section class="section-pad" id="pain">
+  <div class="section-inner">
+    <div class="section-label" data-i18n="pain.label">💡 你的真实处境</div>
+    <h2 class="section-title" data-i18n="pain.title">信息越来越多，<br>判断越来越难</h2>
+    <p class="section-sub" data-i18n="pain.sub">每天海量信息都在影响你的决策。真正的问题不是没有信息——而是不知道哪些信息值得关注。</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="icon">🌪️</div>
+        <h3 data-i18n="pain.card1t">信息过载</h3>
+        <p data-i18n="pain.card1d">每天几十个网站、频道、群组。看了等于没看。<span class="highlight">不知道信谁。</span></p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">📡</div>
+        <h3 data-i18n="pain.card2t">变化太快</h3>
+        <p data-i18n="pain.card2d">政策随时变、市场天天变。昨天还靠谱的信息，<span class="highlight">今天可能就过时了。</span></p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">🎯</div>
+        <h3 data-i18n="pain.card3t">机会迷雾</h3>
+        <p data-i18n="pain.card3d">这个市场还有机会吗？现在进去晚不晚？<span class="highlight">没人能给你确定的答案。</span></p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">⏳</div>
+        <h3 data-i18n="pain.card4t">决策瘫痪</h3>
+        <p data-i18n="pain.card4d">知道应该做点什么，但<span class="highlight">不知道第一步往哪走。</span>于是继续等——等到机会过去。</p>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:24px" data-i18n="flow.label">⚡ SEA Compass 做的事</div>
+    <h2 class="section-title" data-i18n="flow.title">把信息变成方向</h2>
+    <p class="section-sub" data-i18n="flow.sub">不需要研究几十个网站。只需要知道：这件事对我有没有影响、我该怎么办。</p>
+    <div class="flow-wrap">
+      <div class="flow-item"><span class="dot" style="background:var(--orange)"></span> <span data-i18n="flow.s1">新闻 · 政策 · 市场</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item"><span class="dot" style="background:var(--purple)"></span> <span data-i18n="flow.s2">AI 解读影响</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item"><span class="dot" style="background:var(--teal)"></span> <span data-i18n="flow.s3">判断对我有没有影响</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item"><span class="dot" style="background:#fff"></span> <span data-i18n="flow.s4">🎯 行动建议</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAPABILITIES ===== -->
+<section class="section-pad" id="capabilities">
+  <div class="section-inner">
+    <div class="section-label" data-i18n="cap.label">🔧 核心能力</div>
+    <h2 class="section-title" data-i18n="cap.title">不是又一个新闻聚合器<br>是真正帮你做判断的系统</h2>
+    <p class="section-sub" data-i18n="cap.sub">三大能力覆盖从信息收集到决策输出的完整链条。</p>
+    <div class="caps">
+      <div class="cap-card">
+        <div class="emoji">📡</div>
+        <div class="body">
+          <h3 data-i18n="cap.c1t">东南亚情报网络</h3>
+          <p data-i18n="cap.c1d">覆盖 11 个东盟国家、28 个信息源。每日自动收集：政策变化、商业动态、投资环境、签证法规、教育资讯、安全预警。AI 自动筛选，只推送真正值得关注的信号。</p>
+          <div class="tags">
+            <span>🇰🇭 柬埔寨</span><span>🇻🇳 越南</span><span>🇹🇭 泰国</span>
+            <span>🇲🇾 马来西亚</span><span>🇸🇬 新加坡</span><span>🇮🇩 印尼</span>
+            <span>🇵🇭 菲律宾</span><span>🇲🇲 缅甸</span>
+          </div>
+        </div>
+      </div>
+      <div class="cap-card">
+        <div class="emoji">🧠</div>
+        <div class="body">
+          <h3 data-i18n="cap.c2t">AI 决策推演</h3>
+          <p data-i18n="cap.c2d">通过 YiYao Bot 直接提问："我要不要去越南开工厂？""现在适合做 TikTok 吗？" 系统将输出：当前状态分析 · 三种可能路径 · 风险与机会评估 · 推荐行动方案。不预测未来——帮你想清楚各种可能。</p>
+          <div class="tags">
+            <span data-i18n="cap.c2tag1">市场判断</span>
+            <span data-i18n="cap.c2tag2">风险分析</span>
+            <span data-i18n="cap.c2tag3">路径推演</span>
+            <span data-i18n="cap.c2tag4">行动建议</span>
+          </div>
+        </div>
+      </div>
+      <div class="cap-card">
+        <div class="emoji">⏳</div>
+        <div class="body">
+          <h3 data-i18n="cap.c3t">时间窗口分析</h3>
+          <p data-i18n="cap.c3d">不仅告诉你发生了什么——更告诉你：哪些变化是趋势、哪些是噪音、什么时间点最值得关注。未来 7 天 · 30 天 · 90 天变化预警，帮你把握时机。</p>
+          <div class="tags">
+            <span data-i18n="cap.c3tag1">7 天预警</span>
+            <span data-i18n="cap.c3tag2">30 天趋势</span>
+            <span data-i18n="cap.c3tag3">90 天策略</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section class="section-pad" id="products">
+  <div class="section-inner">
+    <div class="section-label" data-i18n="prod.label">📦 产品体系</div>
+    <h2 class="section-title" data-i18n="prod.title">从免费情报到深度决策<br>适合每个阶段</h2>
+    <p class="section-sub" data-i18n="prod.sub">无论你是刚开始关注东南亚，还是已经在市场里深耕，都能找到适合的工具。</p>
+    <div class="prod-grid">
+      <div class="prod-card">
+        <div class="icon">📢</div>
+        <h3 data-i18n="prod.p1t">SEA Compass Radar</h3>
+        <p data-i18n="prod.p1d">免费频道。每日情报推送、AI 导航解读、市场观察。9 个时段覆盖全天，不错过任何重要信号。</p>
+        <span class="badge badge-free" data-i18n="prod.free">免费</span>
+      </div>
+      <div class="prod-card featured">
+        <div class="icon">🤖</div>
+        <h3>YiYao Bot</h3>
+        <p data-i18n="prod.p2d">交互式决策助手。直接提问，获得决策推演、市场判断、风险分析。支持 5 种语言，随时随地。</p>
+        <span class="badge badge-free" data-i18n="prod.free2">免费起</span>
+      </div>
+      <div class="prod-card">
+        <div class="icon">💎</div>
+        <h3 data-i18n="prod.p3t">Compass Pro</h3>
+        <p data-i18n="prod.p3d">面向严肃决策者。深度推演、历史记录、周度策略报告、专属观察清单。即将推出。</p>
+        <span class="badge badge-premium" data-i18n="prod.coming">即将推出</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="section-pad" id="how">
+  <div class="section-inner">
+    <div class="section-label" data-i18n="how.label">🔄 工作方式</div>
+    <h2 class="section-title" data-i18n="how.title">三步闭环</h2>
+    <p class="section-sub" data-i18n="how.sub">从发现信号到做出决策——每一次循环都让你更清楚下一步怎么走。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num" data-i18n="how.s1n">STEP 01</div>
+        <h4 data-i18n="how.s1t">📡 发现重要变化</h4>
+        <p data-i18n="how.s1d">AI 从 28 个信息源中筛选出真正值得关注的信号。不让你被噪音淹没。</p>
+        <div class="ex"><span data-i18n="how.s1tag1">政策变动</span><span data-i18n="how.s1tag2">市场信号</span><span data-i18n="how.s1tag3">签证更新</span><span data-i18n="how.s1tag4">投资风向</span></div>
+      </div>
+      <div class="step">
+        <div class="num" data-i18n="how.s2n">STEP 02</div>
+        <h4 data-i18n="how.s2t">🧠 AI 分析影响</h4>
+        <p data-i18n="how.s2d">谁会受影响？风险在哪里？机会在哪里？AI 为你拆解每个信息的潜在影响。</p>
+        <div class="ex"><span data-i18n="how.s2tag1">影响范围</span><span data-i18n="how.s2tag2">风险等级</span><span data-i18n="how.s2tag3">机会评估</span></div>
+      </div>
+      <div class="step">
+        <div class="num" data-i18n="how.s3n">STEP 03</div>
+        <h4 data-i18n="how.s3t">🎯 帮助你做选择</h4>
+        <p data-i18n="how.s3d">继续等待、转向新方向、进入市场、还是退出？每个选项都有分析支撑。</p>
+        <div class="ex"><span data-i18n="how.s3tag1">继续</span><span data-i18n="how.s3tag2">等待</span><span data-i18n="how.s3tag3">转向</span><span data-i18n="how.s3tag4">进入</span><span data-i18n="how.s3tag5">退出</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AUDIENCE ===== -->
+<section class="section-pad" id="audience">
+  <div class="section-inner">
+    <div class="section-label" data-i18n="aud.label">👥 适合谁</div>
+    <h2 class="section-title" data-i18n="aud.title">如果你在东南亚做决策<br>这就是为你设计的</h2>
+    <p class="section-sub" data-i18n="aud.sub"></p>
+    <div class="aud-grid">
+      <div class="aud-card"><div class="emoji">🚀</div><h4 data-i18n="aud.a1t">跨境创业者</h4><p data-i18n="aud.a1d">寻找东南亚机会，把握市场窗口。知道什么时候进、什么时候等。</p></div>
+      <div class="aud-card"><div class="emoji">👨‍👩‍👧‍👦</div><h4 data-i18n="aud.a2t">华人家庭</h4><p data-i18n="aud.a2d">关注教育、签证、医疗与生活决策。每一个选择都影响全家未来。</p></div>
+      <div class="aud-card"><div class="emoji">📈</div><h4 data-i18n="aud.a3t">投资者</h4><p data-i18n="aud.a3d">跟踪市场变化与风险，发现新赛道。比别人早一步看到变化。</p></div>
+      <div class="aud-card"><div class="emoji">🌏</div><h4 data-i18n="aud.a4t">数字游民</h4><p data-i18n="aud.a4d">寻找更好的落地地点。签证趋势、生活成本、社群分布——手边就有。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHILOSOPHY ===== -->
+<section class="section-pad" id="philosophy">
+  <div class="section-inner">
+    <div class="phil-card">
+      <p data-i18n="phi.l1">很多人以为自己缺少信息。</p>
+      <p data-i18n="phi.l2">实际上——</p>
+      <p style="margin:20px 0;font-size:18px" class="em" data-i18n="phi.l3">大多数人缺少的是把信息转化为判断的能力。</p>
+      <p data-i18n="phi.l4">SEA Compass 不试图预测未来。</p>
+      <p class="accent" data-i18n="phi.l5">在不确定中做出更好的决策。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section-pad cta-section" id="cta">
+  <div class="section-inner">
+    <h2 data-i18n="cta.title">开始接收信号</h2>
+    <p data-i18n="cta.sub">免费 · 每日更新 · 11 国情报</p>
+    <div class="btns">
+      <a href="#" class="btn btn-primary" data-i18n="cta.btn1">📡 订阅 Radar 频道</a>
+      <a href="#" class="btn btn-secondary" data-i18n="cta.btn2">🤖 体验 YiYao Bot</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="inner">
+    <div class="links">
+      <a href="#" data-i18n="footer.r">📡 Radar</a>
+      <a href="#" data-i18n="footer.b">🤖 YiYao Bot</a>
+      <a href="#" data-i18n="footer.p">💎 Pro</a>
+    </div>
+    <p class="copy">🧭 SEA Compass · <span data-i18n="footer.tag">东南亚华人决策操作系统</span> · linkx.club</p>
+  </div>
+</footer>
+
+<script>
+// ===== i18n 文案 =====
+const messages = {
+  zh: {
+    nav: { radar: '📡 情报', bot: '🤖 YiYao Bot', pro: '💎 Pro' },
+    hero: {
+      badge: 'SEA Compass', headline: '东南亚华人<br>决策操作系统',
+      desc: '每天追踪东盟市场变化，结合AI分析与决策推演，<br>帮助你判断：去哪里发展、做什么生意、进入哪个市场、什么时候行动。',
+      pain1: '🌪️ <strong>信息太多</strong> 无从判断', pain2: '📡 <strong>新闻政策</strong> 每天变化', pain3: '🎯 <strong>机会真假</strong> 难以分辨',
+      cta1: '📡 查看最新情报', cta2: '🤖 打开 YiYao Bot'
+    },
+    pain: {
+      label: '💡 你的真实处境', title: '信息越来越多，<br>判断越来越难',
+      sub: '每天海量信息都在影响你的决策。真正的问题不是没有信息——而是不知道哪些信息值得关注。',
+      card1t: '信息过载', card1d: '每天几十个网站、频道、群组。看了等于没看。<span class="highlight">不知道信谁。</span>',
+      card2t: '变化太快', card2d: '政策随时变、市场天天变。昨天还靠谱的信息，<span class="highlight">今天可能就过时了。</span>',
+      card3t: '机会迷雾', card3d: '这个市场还有机会吗？现在进去晚不晚？<span class="highlight">没人能给你确定的答案。</span>',
+      card4t: '决策瘫痪', card4d: '知道应该做点什么，但<span class="highlight">不知道第一步往哪走。</span>于是继续等——等到机会过去。'
+    },
+    flow: {
+      label: '⚡ SEA Compass 做的事', title: '把信息变成方向',
+      sub: '不需要研究几十个网站。只需要知道：这件事对我有没有影响、我该怎么办。',
+      s1: '新闻 · 政策 · 市场', s2: 'AI 解读影响', s3: '判断对我有没有影响', s4: '🎯 行动建议'
+    },
+    cap: {
+      label: '🔧 核心能力', title: '不是又一个新闻聚合器<br>是真正帮你做判断的系统',
+      sub: '三大能力覆盖从信息收集到决策输出的完整链条。',
+      c1t: '东南亚情报网络', c1d: '覆盖 11 个东盟国家、28 个信息源。每日自动收集：政策变化、商业动态、投资环境、签证法规、教育资讯、安全预警。AI 自动筛选，只推送真正值得关注的信号。',
+      c2t: 'AI 决策推演', c2d: '通过 YiYao Bot 直接提问："我要不要去越南开工厂？""现在适合做 TikTok 吗？" 系统将输出：当前状态分析 · 三种可能路径 · 风险与机会评估 · 推荐行动方案。不预测未来——帮你想清楚各种可能。',
+      c2tag1: '市场判断', c2tag2: '风险分析', c2tag3: '路径推演', c2tag4: '行动建议',
+      c3t: '时间窗口分析', c3d: '不仅告诉你发生了什么——更告诉你：哪些变化是趋势、哪些是噪音、什么时间点最值得关注。未来 7 天 · 30 天 · 90 天变化预警，帮你把握时机。',
+      c3tag1: '7 天预警', c3tag2: '30 天趋势', c3tag3: '90 天策略'
+    },
+    prod: {
+      label: '📦 产品体系', title: '从免费情报到深度决策<br>适合每个阶段',
+      sub: '无论你是刚开始关注东南亚，还是已经在市场里深耕，都能找到适合的工具。',
+      p1t: 'SEA Compass Radar', p1d: '免费频道。每日情报推送、AI 导航解读、市场观察。9 个时段覆盖全天，不错过任何重要信号。',
+      p2t: 'YiYao Bot', p2d: '交互式决策助手。直接提问，获得决策推演、市场判断、风险分析。支持 5 种语言，随时随地。',
+      p3t: 'Compass Pro', p3d: '面向严肃决策者。深度推演、历史记录、周度策略报告、专属观察清单。即将推出。',
+      free: '免费', free2: '免费起', coming: '即将推出'
+    },
+    how: {
+      label: '🔄 工作方式', title: '三步闭环',
+      sub: '从发现信号到做出决策——每一次循环都让你更清楚下一步怎么走。',
+      s1n: 'STEP 01', s1t: '📡 发现重要变化', s1d: 'AI 从 28 个信息源中筛选出真正值得关注的信号。不让你被噪音淹没。',
+      s1tag1: '政策变动', s1tag2: '市场信号', s1tag3: '签证更新', s1tag4: '投资风向',
+      s2n: 'STEP 02', s2t: '🧠 AI 分析影响', s2d: '谁会受影响？风险在哪里？机会在哪里？AI 为你拆解每个信息的潜在影响。',
+      s2tag1: '影响范围', s2tag2: '风险等级', s2tag3: '机会评估',
+      s3n: 'STEP 03', s3t: '🎯 帮助你做选择', s3d: '继续等待、转向新方向、进入市场、还是退出？每个选项都有分析支撑。',
+      s3tag1: '继续', s3tag2: '等待', s3tag3: '转向', s3tag4: '进入', s3tag5: '退出'
+    },
+    aud: {
+      label: '👥 适合谁', title: '如果你在东南亚做决策<br>这就是为你设计的', sub: '',
+      a1t: '跨境创业者', a1d: '寻找东南亚机会，把握市场窗口。知道什么时候进、什么时候等。',
+      a2t: '华人家庭', a2d: '关注教育、签证、医疗与生活决策。每一个选择都影响全家未来。',
+      a3t: '投资者', a3d: '跟踪市场变化与风险，发现新赛道。比别人早一步看到变化。',
+      a4t: '数字游民', a4d: '寻找更好的落地地点。签证趋势、生活成本、社群分布——手边就有。'
+    },
+    phi: {
+      l1: '很多人以为自己缺少信息。', l2: '实际上——',
+      l3: '大多数人缺少的是把信息转化为判断的能力。',
+      l4: 'SEA Compass 不试图预测未来。', l5: '在不确定中做出更好的决策。'
+    },
+    cta: { title: '开始接收信号', sub: '免费 · 每日更新 · 11 国情报', btn1: '📡 订阅 Radar 频道', btn2: '🤖 体验 YiYao Bot' },
+    footer: { r: '📡 Radar', b: '🤖 YiYao Bot', p: '💎 Pro', tag: '东南亚华人决策操作系统' }
+  },
+  en: {
+    nav: { radar: '📡 Radar', bot: '🤖 YiYao Bot', pro: '💎 Pro' },
+    hero: {
+      badge: 'SEA Compass', headline: 'Decision OS<br>for Southeast Asia',
+      desc: 'Track ASEAN markets daily. AI-powered analysis and decision simulations<br>to help you decide: where to go, what to build, which market to enter, when to act.',
+      pain1: '🌪️ <strong>Info overload</strong> — what matters?', pain2: '📡 <strong>Markets shift</strong> daily', pain3: '🎯 <strong>Real opportunity</strong> or noise?',
+      cta1: '📡 View Latest Intel', cta2: '🤖 Open YiYao Bot'
+    },
+    pain: {
+      label: '💡 The Real Problem', title: 'More information,<br>harder decisions',
+      sub: 'Every day, news, policies, and rumors pull you in different directions. The real problem isn\'t a lack of information — it\'s knowing what actually matters.',
+      card1t: 'Info Overload', card1d: 'Dozens of sites, channels, and groups daily. You read everything but <span class="highlight">don\'t know who to trust.</span>',
+      card2t: 'Too Much Change', card2d: 'Policies shift overnight. Markets flip in weeks. Yesterday\'s insight is <span class="highlight">today\'s outdated news.</span>',
+      card3t: 'Opportunity Fog', card3d: 'Is there still a window? Are you too late? <span class="highlight">Nobody gives you a straight answer.</span>',
+      card4t: 'Decision Paralysis', card4d: 'You know you should act, but <span class="highlight">don\'t know where to start.</span> So you wait — until the window closes.'
+    },
+    flow: {
+      label: '⚡ What SEA Compass Does', title: 'Turn noise into direction',
+      sub: 'Stop reading 50 sites. Start knowing what affects you and what to do about it.',
+      s1: 'News · Policy · Markets', s2: 'AI Impact Analysis', s3: 'Does this affect me?', s4: '🎯 Action Steps'
+    },
+    cap: {
+      label: '🔧 Core Capabilities', title: 'Not another news aggregator.<br>A real decision system.',
+      sub: 'Three capabilities that turn raw information into actionable decisions.',
+      c1t: 'SEA Intelligence Network', c1d: 'Covering 11 ASEAN countries, 28 sources. Daily automated collection of policy changes, business developments, investment climate, visa regulations, education news, and security alerts. AI-filtered — only signals worth your attention.',
+      c2t: 'AI Decision Engine', c2d: 'Ask YiYao Bot: "Should I open a factory in Vietnam?" "Is TikTok still worth it?" The system outputs: current state analysis · three possible paths · risk & opportunity assessment · recommended actions. We don\'t predict the future — we help you think through every angle.',
+      c2tag1: 'Market Analysis', c2tag2: 'Risk Assessment', c2tag3: 'Path Simulation', c2tag4: 'Recommendations',
+      c3t: 'Timing Analysis', c3d: 'Not just what happened — but what\'s a trend, what\'s noise, and when you should pay attention. 7-day · 30-day · 90-day early warning system.',
+      c3tag1: '7-Day Alert', c3tag2: '30-Day Trend', c3tag3: '90-Day Strategy'
+    },
+    prod: {
+      label: '📦 Products', title: 'From free intel to deep strategy<br>Built for every stage',
+      sub: 'Whether you\'re exploring SEA or already operating here — there\'s a tool for you.',
+      p1t: 'SEA Compass Radar', p1d: 'Free channel. Daily intel推送, AI-powered briefings, market observations. 9 time slots covering the full day.',
+      p2t: 'YiYao Bot', p2d: 'Interactive decision assistant. Ask anything — get decision simulations, market analysis, risk assessment. Supports 5 languages.',
+      p3t: 'Compass Pro', p3d: 'For serious decision-makers. Deep simulations, history tracking, weekly strategy reports, custom watchlists. Coming soon.',
+      free: 'Free', free2: 'Free+', coming: 'Coming Soon'
+    },
+    how: {
+      label: '🔄 How It Works', title: 'Three-step loop',
+      sub: 'Spot → Analyze → Decide. Each cycle makes your next move clearer.',
+      s1n: 'STEP 01', s1t: '📡 Spot Key Changes', s1d: 'AI scans 28 sources and surfaces only the signals worth your attention. No noise.',
+      s1tag1: 'Policy Shifts', s1tag2: 'Market Signals', s1tag3: 'Visa Updates', s1tag4: 'Investment Trends',
+      s2n: 'STEP 02', s2t: '🧠 AI Impact Analysis', s2d: 'Who\'s affected? Where\'s the risk? Where\'s the opportunity? AI breaks down every signal\'s impact.',
+      s2tag1: 'Impact Scope', s2tag2: 'Risk Level', s2tag3: 'Opportunity Assessment',
+      s3n: 'STEP 03', s3t: '🎯 Make Your Move', s3d: 'Hold steady, pivot, enter, or exit — every option backed by analysis, not gut feeling.',
+      s3tag1: 'Hold', s3tag2: 'Wait', s3tag3: 'Pivot', s3tag4: 'Enter', s3tag5: 'Exit'
+    },
+    aud: {
+      label: '👥 Who It\'s For', title: 'If you make decisions in SEA<br>this is built for you', sub: '',
+      a1t: 'Cross-border Entrepreneurs', a1d: 'Spot opportunities and time your moves. Know when to enter and when to wait.',
+      a2t: 'Chinese Families', a2d: 'Education, visas, healthcare, lifestyle — every decision shapes your family\'s future.',
+      a3t: 'Investors', a3d: 'Track market shifts and discover new sectors. See changes before the crowd.',
+      a4t: 'Digital Nomads', a4d: 'Find your next base. Visa trends, cost of living, community hubs — at your fingertips.'
+    },
+    phi: {
+      l1: 'Most people think they lack information.', l2: 'The truth is —',
+      l3: 'What most people lack is the ability to turn information into judgment.',
+      l4: 'SEA Compass doesn\'t try to predict the future.', l5: 'Make better decisions under uncertainty.'
+    },
+    cta: { title: 'Start Receiving Signals', sub: 'Free · Daily Updates · 11 Countries', btn1: '📡 Subscribe to Radar', btn2: '🤖 Try YiYao Bot' },
+    footer: { r: '📡 Radar', b: '🤖 YiYao Bot', p: '💎 Pro', tag: 'Decision OS for Southeast Asia' }
+  }
+}
+
+let currentLang = 'zh'
+
+function updateLang(lang) {
+  currentLang = lang
+  const m = messages[lang]
+
+  // 更新所有 data-i18n 元素
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n
+    const val = key.split('.').reduce((acc, k) => acc?.[k], m)
+    if (val) el.innerHTML = val
+  })
+
+  // 语言切换按钮文案
+  const label = lang === 'zh' ? '🌐 EN' : '🌐 中文'
+  document.querySelectorAll('.lang-btn').forEach(b => b.textContent = label)
+
+  // html 标签
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en'
+
+  // localStorage
+  localStorage.setItem('locale', lang)
+}
+
+// ===== Header scroll effect =====
+const header = document.getElementById('header')
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY > 20
+  header.classList.toggle('scrolled', scrolled)
+})
+
+// ===== Language toggle =====
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const newLang = currentLang === 'zh' ? 'en' : 'zh'
+    updateLang(newLang)
+    // 关闭移动端菜单
+    document.getElementById('mobileMenu').classList.remove('open')
+  })
+})
+
+// ===== Hamburger =====
+const hamburger = document.getElementById('hamburger')
+const mobileMenu = document.getElementById('mobileMenu')
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open')
+})
+
+// ===== Init =====
+const saved = localStorage.getItem('locale')
+updateLang(saved === 'en' ? 'en' : 'zh')
+</script>
+</body>
+</html>

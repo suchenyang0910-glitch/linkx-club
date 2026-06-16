@@ -1,0 +1,634 @@
+作为 LinkX 体系下的核心枢纽，整体架构选型和信息流设计展现出了极高的工程和产品素养。以下是对 v1.2 几个关键更新的深度解析与技术确认：
+
+🌟 核心亮点与架构反馈
+1. Hero 区的动态叙事进化
+从 v1.0 的“静态痛点陈述”升级为 v1.1/1.2 的“三步决策流程（推演 → 判断 → 风险）+ 真实对话例题”，这是一个巨大的体验提升。它将枯燥的卖点变成了可视化的 Workflow，用户在第一屏就能直接感受到 YiYao Bot 的工作模式。
+
+2. 知识库（Knowledge Base）的信任锚点
+新增的知识库展区是建立“专家权威”的杀手锏。市面上的 AI 导航或工具往往只提供一个壳，而通过展示后台的 ~130 份文件和 40 个目录（从 Founder Dao 到易学推理），直接向用户证明了 SEA Compass 是一个有底层逻辑支撑的操作系统，而非简单的 API 套壳。这部分使用紫/青色调划分层级的 UI 规划也非常清晰。
+
+3. 极简的技术栈克制
+MVP 阶段坚持使用纯静态 HTML + CSS + Vanilla JS，零依赖、全部内联。这种做法在当今过度工程化的前端生态中尤为难得。结合 i18n 的对象映射方案，既满足了双语需求，又将部署难度和维护成本降到了绝对的最低点，非常契合高效单人运作的商业模式。Cloudflare Pages 的边缘节点分发也能完美保障东南亚用户的秒开体验。
+
+4. 流量留存引擎：Latest Intelligence
+官网通常面临“看完即走”的窘境，而动态情报区的加入赋予了网站媒体属性。将政策、市场、签证、投资按色值标签化，不仅丰富了页面视觉，还为用户提供了每日回访的理由。
+
+🛠️ 实施建议与微调考量
+关于多语言持久化：在 useI18n.js 或原生的切换逻辑中，除了使用 localStorage 记住用户的语言偏好，建议在初始化时读取一下浏览器的 navigator.language，为首次访问的用户提供默认的精准匹配。
+
+关于 SEO 结构化数据：Phase 2 规划的 JSON-LD 非常到位。考虑到这是一个双语网站，建议在生成 Sitemap 时明确包含 hreflang 属性，以确保 Google 正确索引两个语言版本的权重。
+
+这份文档已经具备了直接转化为生产级代码的极高成熟度，从设计 Token 到组件状态都定义得一丝不苟。
+
+
+
+“南洋高定”风格核心设计调整解析：
+色彩哲学 (Color Palette)
+
+深海/夜航背景 (#060a0c)：抛弃了常规的黑灰搭配，这是一种极深的蓝绿色，象征大航海时代与南洋深水港。
+
+香料金 (Spice Gold - #D4AF37)：取代了硅谷风的紫色。金色在东南亚文化中代表着财富、商贸与历史积淀，这种暗金色赋予了网站极强的“私人银行/高端智库”的视觉感受。
+
+权威排版 (Typography)
+
+引入衬线体 (Playfair Display & Noto Serif SC)：将所有的主要标题（h1, h2, 卡片标题）更改为衬线体。衬线体带来的雕刻感与传统感，能够瞬间建立起一种“我不是一个简单的 AI 工具，而是一个拥有深厚底蕴的决策智库”的权威形象。
+
+微文案的本地化重塑
+
+“打开 YiYao Bot” -> “启动决策沙盘”
+
+“SEA Compass 知识库” -> “SEA Compass 南洋智库”
+
+“把信息变成你的方向” -> “把信息变成你的商业版图”
+
+这些细微的词汇调整，配合金色和深绿的色调，极大地迎合了有出海需求的企业主/高净值人群的心理预期。
+
+视觉质感 (Visual Texture)
+
+金属边框与发光：原本的霓虹发光动画被修改为了 pulse-border-gold，看起来就像是呼吸着的黄铜灯光。
+
+箭头符号优化：使用了更具古典航海气息的波浪箭头 ⤑ 取代了现代感太强的 →。
+
+现在的界面完美融合了 “现代 AI 科技” 与 “南洋传统商道”，既有底层逻辑的极客严谨，又有外在包装的财富厚重感。
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEA Compass · 东南亚华人决策操作系统</title>
+    <meta name="description" content="每天追踪东盟11国市场变化，结合AI分析与决策推演。帮你判断：去哪里发展、做什么生意、进入哪个市场、什么时候行动。">
+    <meta name="application-name" content="SEA Compass">
+    
+    <!-- Fonts: Inter, JetBrains Mono & Noto Serif SC/Playfair Display (For Premium SEA Authority vibe) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@500;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN for zero-build setup) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        serif: ['Playfair Display', 'Noto Serif SC', 'serif']
+                    },
+                    colors: {
+                        bg: '#060a0c', /* Deep Mekong/Ocean Blue-Black */
+                        card: '#0c1417',
+                        cardHover: '#131e23',
+                        border: 'rgba(212, 175, 55, 0.1)', /* Subtle Gold */
+                        borderHover: 'rgba(212, 175, 55, 0.3)',
+                        textMain: '#f0ede6', /* Slightly warm off-white */
+                        textSec: '#a8a296',
+                        dim: '#7c776b',
+                        gold: '#D4AF37', /* Spice Gold */
+                        goldLight: '#F3E5AB',
+                        emerald: '#059669', /* Tropical Emerald */
+                        sunset: '#F43F5E',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS Tokens & Base Styles */
+        :root {
+            --bg: #060a0c;
+            --card: rgba(12, 20, 23, 0.6);
+            --card-hover: rgba(19, 30, 35, 0.8);
+            --border: rgba(212, 175, 55, 0.1);
+            --border-hover: rgba(212, 175, 55, 0.25);
+            --text: #f0ede6;
+            --text-secondary: #a8a296;
+            --dim: #7c776b;
+            --emerald: #059669;
+            --gold: #D4AF37;
+            --gold-light: #F3E5AB;
+            
+            --section-gap: clamp(96px, 10vw, 160px);
+            --container-pad: clamp(24px, 5vw, 64px);
+        }
+
+        body {
+            background-color: var(--bg);
+            /* Tropical contour/topography style background */
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
+                radial-gradient(circle at 100% 50%, rgba(5, 150, 105, 0.03) 0%, transparent 50%);
+            background-size: 100% 100%;
+            background-attachment: fixed;
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Typography Clamps - Using Serif for authoritative headers */
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', 'Noto Serif SC', serif; }
+        h1 { font-size: clamp(40px, 6vw, 76px); line-height: 1.1; letter-spacing: -0.01em; font-weight: 700; }
+        h2 { font-size: clamp(28px, 4vw, 48px); line-height: 1.25; font-weight: 600; }
+
+        /* Reusable Premium Card Component */
+        .glass-card {
+            background: linear-gradient(180deg, var(--card) 0%, rgba(6, 10, 12, 0.8) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border);
+            box-shadow: 0 24px 40px -10px rgba(0,0,0,0.6), inset 0 1px 0 0 rgba(255,255,255,0.03);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card:hover {
+            border-color: var(--border-hover);
+            background: linear-gradient(180deg, var(--card-hover) 0%, rgba(10, 16, 20, 0.9) 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 32px 50px -15px rgba(0,0,0,0.8), inset 0 1px 0 0 rgba(212,175,55,0.08);
+        }
+
+        /* Ambient Glows for Cards */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 100%;
+            background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, -20%), rgba(212, 175, 55, 0.04), transparent 40%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Header Blur */
+        .header-glass {
+            background: rgba(6, 10, 12, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+        }
+
+        /* Typography Utilities */
+        .text-gradient {
+            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #B8860B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #FFDF73 0%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes pulse-border-gold {
+            0% { border-color: rgba(212,175,55,0.15); box-shadow: 0 0 0 0 rgba(212,175,55,0.1); }
+            50% { border-color: rgba(212,175,55,0.4); box-shadow: 0 0 25px 0 rgba(212,175,55,0.15); }
+            100% { border-color: rgba(212,175,55,0.15); box-shadow: 0 0 0 0 rgba(212,175,55,0.1); }
+        }
+
+        /* Specific Component Styles */
+        .kb-card-total {
+            background: linear-gradient(180deg, rgba(212,175,55,0.06) 0%, rgba(6,10,12,0.8) 100%);
+            border-color: rgba(212,175,55,0.3);
+        }
+
+        .hero-flow-arrow {
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(212,175,55,0.4);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        @media (max-width: 768px) {
+            .hero-flow-arrow { transform: rotate(90deg); margin: 10px 0; }
+        }
+
+        /* Background Ambient Lighting Objects */
+        .ambient-light-1 {
+            position: absolute; top: -10%; left: 5%; width: 50vw; height: 600px;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 60%);
+            filter: blur(100px); pointer-events: none; z-index: -1;
+        }
+        .ambient-light-2 {
+            position: absolute; top: 20%; right: -5%; width: 40vw; height: 500px;
+            background: radial-gradient(circle, rgba(5,150,105,0.06) 0%, transparent 60%);
+            filter: blur(100px); pointer-events: none; z-index: -1;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="site-header" class="fixed top-0 left-0 right-0 z-50 header-glass">
+        <div class="max-w-[1200px] mx-auto px-[var(--container-pad)] h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 text-goldLight font-serif font-bold text-lg tracking-wide">
+                <span class="text-xl drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]">🧭</span> <span data-i18n="nav.brand">SEA Compass</span>
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-10 text-sm font-medium text-textSec">
+                <a href="#knowledge-base" class="hover:text-goldLight transition-colors tracking-wide" data-i18n="nav.radar">📚 南洋智库</a>
+                <a href="#hero" class="hover:text-goldLight transition-colors tracking-wide" data-i18n="nav.bot">🤖 YiYao Bot</a>
+                <a href="#intel" class="hover:text-goldLight transition-colors tracking-wide" data-i18n="nav.intel">📰 市场观察</a>
+                <a href="#pro" class="text-gold hover:text-goldLight hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.5)] transition-all tracking-wide" data-i18n="nav.pro">✦ Pro</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button id="lang-switch" class="text-xs font-mono px-4 py-1.5 rounded-full border border-gold/20 text-goldLight hover:border-gold/50 hover:bg-gold/5 transition-all" onclick="toggleLanguage()">
+                    🌐 <span id="lang-text">EN</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-32 md:pt-40 pb-20 max-w-[1200px] mx-auto px-[var(--container-pad)] relative">
+        
+        <!-- Ambient Lights -->
+        <div class="ambient-light-1"></div>
+        <div class="ambient-light-2"></div>
+
+        <section id="hero" class="flex flex-col items-center text-center mb-[var(--section-gap)] relative z-10 fade-in-up">
+            <div class="inline-block px-5 py-2 rounded-full border border-gold/20 bg-gold/5 text-xs font-mono text-goldLight mb-8 backdrop-blur-md shadow-[inset_0_1px_0_rgba(212,175,55,0.1)]" data-i18n="hero.badge">
+                <span class="text-gold mr-2">✦</span> SEA Compass OS v1.2
+            </div>
+            <h1 class="font-bold text-gradient mb-8 tracking-tight drop-shadow-2xl font-serif" data-i18n="hero.title">
+                东南亚华人决策操作系统
+            </h1>
+            <p class="text-textSec text-base md:text-xl max-w-[720px] mb-16 leading-relaxed font-light" data-i18n="hero.desc">
+                每天追踪东盟11国市场变化，结合AI分析与决策推演。帮你判断：去哪里发展、做什么生意、进入哪个市场、什么时候行动。
+            </p>
+
+            <!-- Hero Flow (3 Steps) -->
+            <div class="w-full flex flex-col md:flex-row items-stretch justify-center gap-4 mb-20 relative">
+                <!-- Decorative background line for desktop -->
+                <div class="hidden md:block absolute top-1/2 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-gold/10 to-transparent -translate-y-1/2 -z-10"></div>
+                
+                <div class="glass-card flex-1 p-8 text-left flex flex-col gap-3 group">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-gold/10 to-transparent border border-gold/20 flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(212,175,55,0.05)] group-hover:scale-110 transition-transform">🧠</div>
+                    <h3 class="font-serif font-bold text-xl mt-3 text-goldLight" data-i18n="hero.f1t">决策推演</h3>
+                    <p class="text-sm text-dim leading-relaxed" data-i18n="hero.f1d">分析选项，输出三条可行路径及成功率预测。</p>
+                </div>
+                <div class="hero-flow-arrow text-2xl">⤑</div>
+                <div class="glass-card flex-1 p-8 text-left flex flex-col gap-3 group">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald/10 to-transparent border border-emerald/20 flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(5,150,105,0.05)] group-hover:scale-110 transition-transform">📊</div>
+                    <h3 class="font-serif font-bold text-xl mt-3 text-white" data-i18n="hero.f2t">市场判断</h3>
+                    <p class="text-sm text-dim leading-relaxed" data-i18n="hero.f2d">多维度数据判定目标市场处于早期、增长或衰退期。</p>
+                </div>
+                <div class="hero-flow-arrow text-2xl">⤑</div>
+                <div class="glass-card flex-1 p-8 text-left flex flex-col gap-3 group">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-500/10 to-transparent border border-rose-500/20 flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(244,63,94,0.05)] group-hover:scale-110 transition-transform">⚠️</div>
+                    <h3 class="font-serif font-bold text-xl mt-3 text-white" data-i18n="hero.f3t">风险分析</h3>
+                    <p class="text-sm text-dim leading-relaxed" data-i18n="hero.f3d">提前扫描合规、竞争与资金风险，并提供应对策略。</p>
+                </div>
+            </div>
+
+            <!-- Hero Example (Chatbot Mockup) -->
+            <div class="w-full max-w-[800px] bg-gradient-to-b from-[#11181c] to-[#060a0c] border border-gold/10 rounded-2xl p-1 text-left mb-16 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative overflow-hidden">
+                <!-- Premium Bank/Consulting like header -->
+                <div class="flex items-center gap-3 px-5 py-3 border-b border-white/5 bg-white/[0.01]">
+                    <div class="w-2 h-2 rounded-full bg-gold/50"></div>
+                    <div class="text-[10px] font-mono text-gold/60 tracking-[0.2em] uppercase">YiYao Intelligence Core</div>
+                </div>
+                <div class="p-6 md:p-8">
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-sm font-bold text-slate-300 shrink-0">U</div>
+                        <p class="text-base md:text-lg font-serif pt-1 text-white/90" data-i18n="hero.ex_q">我要不要去越南胡志明市开一家精品咖啡店？</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-yellow-600 flex items-center justify-center text-sm font-bold shadow-lg shadow-gold/20 shrink-0 text-black">🧭</div>
+                        <div class="flex-1 bg-white/[0.03] border border-white/5 rounded-xl p-5 text-sm md:text-base text-textSec space-y-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]">
+                            <p data-i18n="hero.ex_a1"><strong class="text-goldLight font-semibold">YiYao 战略推演：</strong> 胡志明市第一郡咖啡市场已趋于饱和（红海），但对高品质豆和独特空间设计的需求正在上升。</p>
+                            <ul class="space-y-3 mt-4">
+                                <li class="flex items-start gap-3 bg-black/30 p-3 rounded-lg border border-white/5" data-i18n="hero.ex_a2">
+                                    <span class="text-emerald mt-0.5">↳</span> 
+                                    <span>路径 A：避开市中心，在第二郡（Thao Dien）主打数字游民办公空间 <strong class="text-emerald font-mono text-xs px-2 py-0.5 bg-emerald/10 rounded ml-2 border border-emerald/20">匹配度 85%</strong></span>
+                                </li>
+                                <li class="flex items-start gap-3 bg-black/30 p-3 rounded-lg border border-white/5" data-i18n="hero.ex_a3">
+                                    <span class="text-gold mt-0.5">↳</span> 
+                                    <span>路径 B：纯外卖模式，依托 Grab/ShopeeFood，主打极致坪效 <strong class="text-gold font-mono text-xs px-2 py-0.5 bg-gold/10 rounded ml-2 border border-gold/20">匹配度 70%</strong></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
+                <a href="#intel" class="px-8 py-4 rounded-xl bg-gradient-to-r from-gold to-yellow-500 text-black font-bold hover:brightness-110 transition-all flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:-translate-y-1" data-i18n="hero.cta1">
+                    📡 查看市场观察
+                </a>
+                <a href="#bot" class="px-8 py-4 rounded-xl border border-gold/30 bg-gold/5 hover:bg-gold/10 hover:border-gold/60 text-goldLight transition-all flex items-center justify-center gap-2 font-semibold backdrop-blur-md hover:-translate-y-1" data-i18n="hero.cta2">
+                    🧭 启动决策沙盘
+                </a>
+            </div>
+        </section>
+
+        <section id="knowledge-base" class="mb-[var(--section-gap)] fade-in-up" style="animation-delay: 0.2s;">
+            <div class="mb-14 text-center md:text-left">
+                <span class="font-mono text-gold text-xs font-semibold tracking-[0.2em] uppercase mb-4 block" data-i18n="kb.label">/ DECISION FOUNDATION</span>
+                <h2 class="font-bold mb-4 font-serif text-white" data-i18n="kb.title">SEA Compass 南洋智库</h2>
+                <p class="text-textSec text-lg max-w-[640px]" data-i18n="kb.sub">每一个决策背后，是一套持续更新、结构化的底层知识体系支撑，而非凭空猜测。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- KB Card 1 -->
+                <div class="glass-card">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl mb-5">🧭</div>
+                    <h3 class="font-serif font-semibold text-lg mb-2 text-white" data-i18n="kb.c1t">决策层</h3>
+                    <div class="font-mono text-[11px] text-gold font-medium mb-4 tracking-wide uppercase bg-gold/10 border border-gold/20 inline-block px-2 py-1 rounded" data-i18n="kb.c1c">道 · 志 · 德 — 8 份文件</div>
+                    <p class="text-sm text-textSec mb-6 leading-relaxed h-[40px]" data-i18n="kb.c1d">七条道、不做清单、目标校准、五德展开原则。</p>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                        <span class="text-textSec text-xs font-medium before:content-['#'] before:mr-0.5" data-i18n="kb.c1tag1">Founder Dao</span>
+                        <span class="text-textSec text-xs font-medium before:content-['#'] before:mr-0.5" data-i18n="kb.c1tag2">目标校准</span>
+                    </div>
+                </div>
+
+                <!-- KB Card 2 -->
+                <div class="glass-card">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl mb-5">📐</div>
+                    <h3 class="font-serif font-semibold text-lg mb-2 text-white" data-i18n="kb.c2t">方法论</h3>
+                    <div class="font-mono text-[11px] text-gold font-medium mb-4 tracking-wide uppercase bg-gold/10 border border-gold/20 inline-block px-2 py-1 rounded" data-i18n="kb.c2c">法 — 8 大模块</div>
+                    <p class="text-sm text-textSec mb-6 leading-relaxed h-[40px]" data-i18n="kb.c2d">涵盖商业、营销、财务管理及个人健康发展的框架。</p>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                        <span class="text-textSec text-xs font-medium before:content-['#'] before:mr-0.5" data-i18n="kb.c2tag1">商业框架</span>
+                        <span class="text-textSec text-xs font-medium before:content-['#'] before:mr-0.5" data-i18n="kb.c2tag2">增长策略</span>
+                    </div>
+                </div>
+
+                <!-- KB Card 3 -->
+                <div class="glass-card">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl mb-5">🛠️</div>
+                    <h3 class="font-serif font-semibold text-lg mb-2 text-white" data-i18n="kb.c3t">工具库</h3>
+                    <div class="font-mono text-[11px] text-gold font-medium mb-4 tracking-wide uppercase bg-gold/10 border border-gold/20 inline-block px-2 py-1 rounded" data-i18n="kb.c3c">术 · 案例 — 43 份文件</div>
+                    <p class="text-sm text-textSec mb-6 leading-relaxed h-[40px]" data-i18n="kb.c3d">AI副业实战案例、东南亚商业模型拆解与订阅模式研究。</p>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                        <span class="text-textSec text-xs font-medium before:content-['#'] before:mr-0.5" data-i18n="kb.c3tag1">AI 实战</span>
+                        <span class="text-textSec text-xs font-medium before:content-['#'] before:mr-0.5" data-i18n="kb.c3tag2">市场拆解</span>
+                    </div>
+                </div>
+
+                <!-- KB Card 4 -->
+                <div class="glass-card">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl mb-5">📚</div>
+                    <h3 class="font-serif font-semibold text-lg mb-2 text-white" data-i18n="kb.c4t">专项知识库</h3>
+                    <div class="font-mono text-[11px] text-gold font-medium mb-4 tracking-wide uppercase bg-gold/10 border border-gold/20 inline-block px-2 py-1 rounded" data-i18n="kb.c4c">30 份深度解析</div>
+                    <p class="text-sm text-textSec mb-6 leading-relaxed h-[40px]" data-i18n="kb.c4d">易学卦象推演规则、领导力心法、系统思考模型。</p>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                        <span class="text-textSec text-xs font-medium before:content-['#'] before:mr-0.5" data-i18n="kb.c4tag1">逻辑推演</span>
+                        <span class="text-textSec text-xs font-medium before:content-['#'] before:mr-0.5" data-i18n="kb.c4tag2">领导力</span>
+                    </div>
+                </div>
+
+                <!-- KB Card 5 -->
+                <div class="glass-card">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl mb-5">🔧</div>
+                    <h3 class="font-serif font-semibold text-lg mb-2 text-white" data-i18n="kb.c5t">执行工具</h3>
+                    <div class="font-mono text-[11px] text-gold font-medium mb-4 tracking-wide uppercase bg-gold/10 border border-gold/20 inline-block px-2 py-1 rounded" data-i18n="kb.c5c">器 · 脚本 — 5 份文件</div>
+                    <p class="text-sm text-textSec mb-6 leading-relaxed h-[40px]" data-i18n="kb.c5d">自动化信息抓取脚本与工作流配置文件，将策略落地为工具。</p>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                        <span class="text-textSec text-xs font-medium before:content-['#'] before:mr-0.5" data-i18n="kb.c5tag1">自动化</span>
+                        <span class="text-textSec text-xs font-medium before:content-['#'] before:mr-0.5" data-i18n="kb.c5tag2">系统配置</span>
+                    </div>
+                </div>
+
+                <!-- KB Card 6 (Total/Summary) -->
+                <div class="glass-card kb-card-total" style="animation: pulse-border-gold 4s infinite;">
+                    <div class="w-12 h-12 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-2xl mb-5 shadow-[0_0_15px_rgba(212,175,55,0.2)]">📋</div>
+                    <h3 class="font-serif font-bold text-xl mb-2 text-goldLight" data-i18n="kb.c6t">体系覆盖总数</h3>
+                    <div class="font-mono text-[13px] text-black font-bold mb-4 tracking-wide bg-gold inline-block px-3 py-1 rounded-md" data-i18n="kb.c6c">共 ~130 文件 · 40 目录</div>
+                    <p class="text-sm text-textSec mb-6 leading-relaxed h-[40px]" data-i18n="kb.c6d">智库每日流转更新，通过东南亚本土实战不断纠偏与沉淀。</p>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-gold/10">
+                        <span class="text-gold/80 text-xs font-medium before:content-['✦'] before:mr-1" data-i18n="kb.c6tag1">持续迭代</span>
+                        <span class="text-gold/80 text-xs font-medium before:content-['✦'] before:mr-1" data-i18n="kb.c6tag2">本土化深度</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="intel" class="mb-[var(--section-gap)] fade-in-up" style="animation-delay: 0.4s;">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 gap-4">
+                <div>
+                    <span class="font-mono text-gold text-xs font-semibold tracking-[0.2em] uppercase mb-4 block" data-i18n="intel.label">/ LATEST INTELLIGENCE</span>
+                    <h2 class="font-bold text-white font-serif" data-i18n="intel.title">南洋市场观察</h2>
+                </div>
+                <p class="text-textSec text-lg" data-i18n="intel.sub">AI 每日从海量噪音中提取高价值商业信号</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Intel Card 1 -->
+                <div class="glass-card flex flex-col p-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="px-3 py-1 rounded bg-gold/10 text-gold text-xs font-mono font-bold border border-gold/30" data-i18n="intel.tag.policy">政策 / Policy</span>
+                        <span class="font-mono text-xs text-dim">2026-06-15 · Vietnam</span>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl mb-3 text-goldLight leading-snug">越南放宽数字游民签证条件</h3>
+                    <p class="text-base text-textSec mb-6 flex-1 leading-relaxed">针对IT和创意产业从业者，胡志明市出台试行政策，允许凭海外收入证明直接申请1年期居留卡，免除繁琐劳工证办理。</p>
+                    <div class="pt-5 border-t border-white/10 mt-auto bg-black/20 -mx-8 -mb-8 px-8 py-5 rounded-b-2xl">
+                        <p class="text-sm text-textSec leading-relaxed"><strong class="text-white font-mono text-xs tracking-wide bg-white/10 px-2 py-1 rounded mr-2">AI 洞察</strong> 利好出海服务商及办公地产，短期内将吸引大量周边国家华人nomad流入。</p>
+                    </div>
+                </div>
+
+                <!-- Intel Card 2 -->
+                <div class="glass-card flex flex-col p-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="px-3 py-1 rounded bg-emerald/10 text-emerald text-xs font-mono font-bold border border-emerald/30" data-i18n="intel.tag.market">市场 / Market</span>
+                        <span class="font-mono text-xs text-dim">2026-06-14 · Indonesia</span>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl mb-3 text-white leading-snug">印尼电商新规实施两月后复盘</h3>
+                    <p class="text-base text-textSec mb-6 flex-1 leading-relaxed">社交电商与传统电商分离政策落地后，本土中小商家流量下滑30%，但客单价提升15%。本地仓配服务商迎来爆发式增长。</p>
+                    <div class="pt-5 border-t border-white/10 mt-auto bg-black/20 -mx-8 -mb-8 px-8 py-5 rounded-b-2xl">
+                        <p class="text-sm text-textSec leading-relaxed"><strong class="text-white font-mono text-xs tracking-wide bg-white/10 px-2 py-1 rounded mr-2">AI 洞察</strong> 纯流量打法失效，转向重资产的供应链合规运营。投资仓储物流服务是当前最佳切入点。</p>
+                    </div>
+                </div>
+
+                <!-- Intel Card 3 -->
+                <div class="glass-card flex flex-col p-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="px-3 py-1 rounded bg-orange-500/10 text-orange-400 text-xs font-mono font-bold border border-orange-500/30" data-i18n="intel.tag.visa">签证 / Visa</span>
+                        <span class="font-mono text-xs text-dim">2026-06-12 · Malaysia</span>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl mb-3 text-white leading-snug">大马第二家园 (MM2H) 门槛微调</h3>
+                    <p class="text-base text-textSec mb-6 flex-1 leading-relaxed">内政部宣布对来自东盟成员国的申请人实行资金门槛八折优惠，旨在促进区域内高净值人群流动。</p>
+                    <div class="pt-5 border-t border-white/10 mt-auto bg-black/20 -mx-8 -mb-8 px-8 py-5 rounded-b-2xl">
+                        <p class="text-sm text-textSec leading-relaxed"><strong class="text-white font-mono text-xs tracking-wide bg-white/10 px-2 py-1 rounded mr-2">AI 洞察</strong> 对持新加坡、泰国等绿卡/长居的华人形成极强吸引力，新山房产询盘量预计本月内上涨。</p>
+                    </div>
+                </div>
+
+                <!-- Intel Card 4 -->
+                <div class="glass-card flex flex-col p-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-xs font-mono font-bold border border-blue-500/30" data-i18n="intel.tag.investment">投资 / Investment</span>
+                        <span class="font-mono text-xs text-dim">2026-06-10 · Thailand</span>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl mb-3 text-white leading-snug">曼谷 EEC 特区加码 AI 算力补贴</h3>
+                    <p class="text-base text-textSec mb-6 flex-1 leading-relaxed">东部经济走廊(EEC)委员会通过新案，对外资设立的数据中心及AI研发机构给予最高8年免税期及电费定额补贴。</p>
+                    <div class="pt-5 border-t border-white/10 mt-auto bg-black/20 -mx-8 -mb-8 px-8 py-5 rounded-b-2xl">
+                        <p class="text-sm text-textSec leading-relaxed"><strong class="text-white font-mono text-xs tracking-wide bg-white/10 px-2 py-1 rounded mr-2">AI 洞察</strong> 泰国正抢夺区域算力中心地位，相关硬件供应链及出海算力租赁企业迎来6-12个月的政策红利窗口。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium CTA Section -->
+        <section id="pro" class="mb-[var(--section-gap)] text-center relative overflow-hidden rounded-[2.5rem] p-12 md:p-24 fade-in-up border border-gold/20 shadow-2xl">
+            <!-- CTA Background Gradients -->
+            <div class="absolute inset-0 bg-[#0c1417] -z-20"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-emerald/10 opacity-50 -z-10"></div>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.15)_0%,transparent_70%)] pointer-events-none -z-10"></div>
+
+            <h2 class="font-serif font-bold mb-6 text-goldLight text-4xl md:text-5xl" data-i18n="cta.title">把信息变成你的商业版图</h2>
+            <p class="text-textSec mb-10 max-w-[600px] mx-auto text-lg leading-relaxed" data-i18n="cta.desc">不要再每天刷几十个网站寻找机会。让 SEA Compass 帮你建立系统化的决策优势。</p>
+            <a href="#" class="inline-flex items-center justify-center px-10 py-5 rounded-2xl bg-gradient-to-r from-gold to-yellow-500 text-black font-bold text-lg hover:scale-105 transition-transform shadow-[0_0_40px_rgba(212,175,55,0.3)] hover:shadow-[0_0_60px_rgba(212,175,55,0.5)]" data-i18n="cta.btn">
+                获取 Compass Pro 权限 <span class="ml-2 font-mono text-black/60 font-normal text-xl">⤑</span>
+            </a>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-white/5 bg-[#040709] py-12 text-center text-dim text-sm relative z-10">
+        <div class="max-w-[1200px] mx-auto px-[var(--container-pad)] flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 SEA Compass. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-goldLight transition-colors">Twitter</a>
+                <a href="#" class="hover:text-goldLight transition-colors">Telegram</a>
+                <a href="#" class="hover:text-goldLight transition-colors">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- i18n Configuration ---
+        const locales = {
+            zh: {
+                'nav.brand': 'SEA Compass',
+                'nav.radar': '📚 南洋智库',
+                'nav.bot': '🤖 YiYao Bot',
+                'nav.intel': '📰 市场观察',
+                'nav.pro': '✦ Pro',
+                'hero.badge': 'SEA Compass OS v1.2',
+                'hero.title': '东南亚华人决策操作系统',
+                'hero.desc': '每天追踪东盟11国市场变化，结合AI分析与决策推演。帮你判断：去哪里发展、做什么生意、进入哪个市场、什么时候行动。',
+                'hero.f1t': '决策推演', 'hero.f1d': '分析选项，输出三条可行路径及成功率预测。',
+                'hero.f2t': '市场判断', 'hero.f2d': '多维度数据判定目标市场处于早期、增长或衰退期。',
+                'hero.f3t': '风险分析', 'hero.f3d': '提前扫描合规、竞争与资金风险，并提供应对策略。',
+                'hero.ex_q': '我要不要去越南胡志明市开一家精品咖啡店？',
+                'hero.ex_a1': '<strong class="text-goldLight font-semibold">YiYao 战略推演：</strong> 胡志明市第一郡咖啡市场已趋于饱和（红海），但对高品质豆和独特空间设计的需求正在上升。',
+                'hero.ex_a2': '<span class="text-emerald mt-0.5">↳</span> <span>路径 A：避开市中心，在第二郡（Thao Dien）主打数字游民办公空间 <strong class="text-emerald font-mono text-xs px-2 py-0.5 bg-emerald/10 rounded ml-2 border border-emerald/20">匹配度 85%</strong></span>',
+                'hero.ex_a3': '<span class="text-gold mt-0.5">↳</span> <span>路径 B：纯外卖模式，依托 Grab/ShopeeFood，主打极致坪效 <strong class="text-gold font-mono text-xs px-2 py-0.5 bg-gold/10 rounded ml-2 border border-gold/20">匹配度 70%</strong></span>',
+                'hero.cta1': '📡 查看市场观察',
+                'hero.cta2': '🧭 启动决策沙盘',
+                
+                'kb.label': '/ DECISION FOUNDATION',
+                'kb.title': 'SEA Compass 南洋智库',
+                'kb.sub': '每一个决策背后，是一套持续更新、结构化的底层知识体系支撑，而非凭空猜测。',
+                'kb.c1t': '决策层', 'kb.c1c': '道 · 志 · 德 — 8 份文件', 'kb.c1d': '七条道、不做清单、目标校准、五德展开原则。', 'kb.c1tag1': 'Founder Dao', 'kb.c1tag2': '目标校准',
+                'kb.c2t': '方法论', 'kb.c2c': '法 — 8 大模块', 'kb.c2d': '涵盖商业、营销、财务管理及个人健康发展的框架。', 'kb.c2tag1': '商业框架', 'kb.c2tag2': '增长策略',
+                'kb.c3t': '工具库', 'kb.c3c': '术 · 案例 — 43 份文件', 'kb.c3d': 'AI副业实战案例、东南亚商业模型拆解与订阅模式研究。', 'kb.c3tag1': 'AI 实战', 'kb.c3tag2': '市场拆解',
+                'kb.c4t': '专项知识库', 'kb.c4c': '30 份深度解析', 'kb.c4d': '易学卦象推演规则、领导力心法、系统思考模型。', 'kb.c4tag1': '逻辑推演', 'kb.c4tag2': '领导力',
+                'kb.c5t': '执行工具', 'kb.c5c': '器 · 脚本 — 5 份文件', 'kb.c5d': '自动化信息抓取脚本与工作流配置文件，将策略落地为工具。', 'kb.c5tag1': '自动化', 'kb.c5tag2': '系统配置',
+                'kb.c6t': '体系覆盖总数', 'kb.c6c': '共 ~130 文件 · 40 目录', 'kb.c6d': '智库每日流转更新，通过东南亚本土实战不断纠偏与沉淀。', 'kb.c6tag1': '持续迭代', 'kb.c6tag2': '本土化深度',
+
+                'intel.label': '/ LATEST INTELLIGENCE',
+                'intel.title': '南洋市场观察',
+                'intel.sub': 'AI 每日从海量噪音中提取高价值商业信号',
+                'intel.tag.policy': '政策 / Policy', 'intel.tag.market': '市场 / Market', 'intel.tag.visa': '签证 / Visa', 'intel.tag.investment': '投资 / Investment',
+                
+                'cta.title': '把信息变成你的商业版图',
+                'cta.desc': '不要再每天刷几十个网站寻找机会。让 SEA Compass 帮你建立系统化的决策优势。',
+                'cta.btn': '获取 Compass Pro 权限 <span class="ml-2 font-mono text-black/60 font-normal text-xl">⤑</span>'
+            },
+            en: {
+                'nav.brand': 'SEA Compass',
+                'nav.radar': '📚 Think Tank',
+                'nav.bot': '🤖 YiYao Bot',
+                'nav.intel': '📰 Intel',
+                'nav.pro': '✦ Pro',
+                'hero.badge': 'SEA Compass OS v1.2',
+                'hero.title': 'Decision OS for Southeast Asia',
+                'hero.desc': 'Track ASEAN markets daily. AI-powered analysis and decision simulation to help you decide: where to go, what business to do, and when to act.',
+                'hero.f1t': 'Decision Sim', 'hero.f1d': 'Analyze options, output three viable paths and success rate predictions.',
+                'hero.f2t': 'Market Intel', 'hero.f2d': 'Determine if a target market is in early, growth, or decline phase.',
+                'hero.f3t': 'Risk Scan', 'hero.f3d': 'Proactively scan compliance, competition, and capital risks with mitigation plans.',
+                'hero.ex_q': 'Should I open a boutique coffee shop in Ho Chi Minh City, Vietnam?',
+                'hero.ex_a1': '<strong class="text-goldLight font-semibold">YiYao Strategy Sim:</strong> The coffee market in D1 HCMC is highly saturated (Red Ocean), but demand for high-quality beans and unique spatial design is rising.',
+                'hero.ex_a2': '<span class="text-emerald mt-0.5">↳</span> <span>Path A: Avoid city center, target D2 (Thao Dien) focusing on Digital Nomad workspaces. <strong class="text-emerald font-mono text-xs px-2 py-0.5 bg-emerald/10 rounded ml-2 border border-emerald/20">Match 85%</strong></span>',
+                'hero.ex_a3': '<span class="text-gold mt-0.5">↳</span> <span>Path B: Pure delivery model via Grab/ShopeeFood, focusing on extreme floor efficiency. <strong class="text-gold font-mono text-xs px-2 py-0.5 bg-gold/10 rounded ml-2 border border-gold/20">Match 70%</strong></span>',
+                'hero.cta1': '📡 View Market Intel',
+                'hero.cta2': '🧭 Launch Sandbox',
+                
+                'kb.label': '/ DECISION FOUNDATION',
+                'kb.title': 'Nanyang Think Tank',
+                'kb.sub': 'Every decision is backed by a continuously updated, structured underlying knowledge base, not guesswork.',
+                'kb.c1t': 'Decision Layer', 'kb.c1c': 'Dao · Zhi · De — 8 Files', 'kb.c1d': 'Seven Daos, Not-To-Do lists, Goal calibration, Five Virtues principles.', 'kb.c1tag1': 'Founder Dao', 'kb.c1tag2': 'Calibration',
+                'kb.c2t': 'Methodology', 'kb.c2c': 'Law — 8 Modules', 'kb.c2d': 'Frameworks covering business, marketing, finance, and personal development.', 'kb.c2tag1': 'Biz Framework', 'kb.c2tag2': 'Growth',
+                'kb.c3t': 'Tool Library', 'kb.c3c': 'Art · Cases — 43 Files', 'kb.c3d': 'AI side-hustle cases, SEA business model breakdowns, and subscription research.', 'kb.c3tag1': 'AI Cases', 'kb.c3tag2': 'Market Breakdown',
+                'kb.c4t': 'Specialized Knowledge', 'kb.c4c': '30 Deep Dives', 'kb.c4d': 'I Ching inference rules, leadership mindset, systems thinking models.', 'kb.c4tag1': 'Logic Inference', 'kb.c4tag2': 'Leadership',
+                'kb.c5t': 'Execution Tools', 'kb.c5c': 'Scripts · Configs — 5 Files', 'kb.c5d': 'Automated scraping scripts and workflow configs turning strategy into tools.', 'kb.c5tag1': 'Automation', 'kb.c5tag2': 'Sys Configs',
+                'kb.c6t': 'Total Coverage', 'kb.c6c': '~130 Files · 40 Dirs', 'kb.c6d': 'The think tank is updated daily, continuously refined through local SEA combat.', 'kb.c6tag1': 'Continuous Iteration', 'kb.c6tag2': 'Local Depth',
+
+                'intel.label': '/ LATEST INTELLIGENCE',
+                'intel.title': 'SEA Market Intel',
+                'intel.sub': 'AI extracts high-value signals from massive noise daily.',
+                'intel.tag.policy': 'Policy', 'intel.tag.market': 'Market', 'intel.tag.visa': 'Visa', 'intel.tag.investment': 'Investment',
+                
+                'cta.title': 'Turn Information into Your Empire',
+                'cta.desc': 'Stop browsing dozens of sites daily for opportunities. Let SEA Compass build your systematic decision advantage.',
+                'cta.btn': 'Get Compass Pro Access <span class="ml-2 font-mono text-black/60 font-normal text-xl">⤑</span>'
+            }
+        };
+
+        let currentLang = 'zh'; // Default language
+
+        // Check browser preference or localStorage on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('sea-compass-lang');
+            if (savedLang && (savedLang === 'zh' || savedLang === 'en')) {
+                currentLang = savedLang;
+            } else {
+                const browserLang = navigator.language.slice(0, 2);
+                if (browserLang === 'en') currentLang = 'en';
+            }
+            applyLanguage(currentLang);
+        });
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            localStorage.setItem('sea-compass-lang', currentLang);
+            applyLanguage(currentLang);
+        }
+
+        function applyLanguage(lang) {
+            // Update Toggle Button Text
+            document.getElementById('lang-text').innerText = lang === 'zh' ? 'EN' : '中';
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+            // Update all elements with data-i18n attribute
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (locales[lang] && locales[lang][key]) {
+                    el.innerHTML = locales[lang][key];
+                }
+            });
+        }
+    </script>
+</body>
+</html>
