@@ -307,6 +307,40 @@ footer.scroll-section{min-height:40vh;justify-content:center}
 .sec-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none;z-index:0;opacity:0.25}
 .sec-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,var(--bg) 0%,transparent 20%,transparent 80%,var(--bg) 100%);pointer-events:none;z-index:1}
 .map-bg{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:1200px;height:800px;opacity:0.06;pointer-events:none;z-index:-1}
+
+/* ===== Hero BG (image) ===== */
+.hero{position:relative;overflow:hidden}
+.hero-bg{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:0;opacity:0.5}
+.hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(6,10,12,0.7) 0%,rgba(6,10,12,0.3) 50%,rgba(6,10,12,0.8) 100%);pointer-events:none;z-index:1}
+.hero .wrap{position:relative;z-index:2}
+
+section.scroll-section{position:relative}
+/* ===== Section overlay system ===== */
+.sec-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:0;opacity:0.2}
+.sec-overlay{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+section .wrap{position:relative;z-index:2}
+
+/* ===== Per-section backgrounds ===== */
+#pain .sec-overlay{background:linear-gradient(135deg,rgba(6,10,12,0.95) 0%,rgba(20,8,12,0.9) 100%)}
+#pain .sec-img{opacity:0.15}
+
+#capabilities .sec-overlay{background:linear-gradient(135deg,rgba(6,10,12,0.92) 0%,rgba(6,15,20,0.88) 100%)}
+#capabilities .sec-img{opacity:0.18}
+
+#knowledge-base .sec-overlay{background:linear-gradient(135deg,rgba(8,14,18,0.95) 0%,rgba(6,10,12,0.9) 100%)}
+#knowledge-base .sec-img{opacity:0.12}
+
+#intel .sec-img{opacity:0.12}
+#intel .sec-overlay{background:linear-gradient(135deg,rgba(6,10,12,0.92) 0%,rgba(10,15,18,0.88) 100%)}
+
+#latest-report .sec-img{opacity:0.15}
+#latest-report .sec-overlay{background:linear-gradient(135deg,rgba(8,12,16,0.95) 0%,rgba(6,10,12,0.9) 100%)}
+
+#pro .sec-img{opacity:0.12}
+#pro .sec-overlay{background:linear-gradient(135deg,rgba(6,10,12,0.9) 0%,rgba(15,10,6,0.88) 100%)}
+
+#cta .sec-overlay{background:linear-gradient(135deg,rgba(6,10,12,0.92) 0%,rgba(8,14,6,0.88) 100%)}
+#cta .sec-img{opacity:0.15}
 </style>
 
 <!-- Google tag (gtag.js) -->
@@ -409,6 +443,8 @@ footer.scroll-section{min-height:40vh;justify-content:center}
 
 <!-- ===== PAIN ===== -->
 <section class="scroll-section" id="pain">
+  <div class="sec-overlay"></div>
+  <img src="/assets/sea-tech-bg.jpg" alt="" class="sec-img" aria-hidden="true">
   <div class="wrap">
     <div class="section-label" data-i18n="pain.label">/ YOUR REALITY</div>
     <h2 class="section-title" data-i18n="pain.title">信息越来越多，<br>判断越来越难</h2>
@@ -438,6 +474,8 @@ footer.scroll-section{min-height:40vh;justify-content:center}
 
 <!-- ===== CAPABILITIES ===== -->
 <section class="scroll-section" id="capabilities">
+  <div class="sec-overlay"></div>
+  <img src="/assets/sea-tech-bg.jpg" alt="" class="sec-img" aria-hidden="true">
   <div class="wrap">
     <div class="section-label" data-i18n="cap.label">/ CORE CAPABILITIES</div>
     <h2 class="section-title" data-i18n="cap.title">不是又一个新闻聚合器<br>是真正帮你做判断的系统</h2>
@@ -461,6 +499,8 @@ footer.scroll-section{min-height:40vh;justify-content:center}
 
 <!-- ===== KNOWLEDGE BASE ===== -->
 <section class="scroll-section" id="knowledge-base">
+  <div class="sec-overlay"></div>
+  <img src="/assets/sea-tech-bg.jpg" alt="" class="sec-img" aria-hidden="true">
   <div class="wrap">
     <div class="section-label" data-i18n="kb.label">/ DECISION FOUNDATION</div>
     <h2 class="section-title" data-i18n="kb.title">SEA Compass 南洋智库</h2>
@@ -533,6 +573,8 @@ footer.scroll-section{min-height:40vh;justify-content:center}
 
 <!-- ===== INTELLIGENCE ===== -->
 <section class="scroll-section" id="intel">
+  <div class="sec-overlay"></div>
+  <img src="/assets/sea-bg.jpg" alt="" class="sec-img" aria-hidden="true">
   <div class="wrap">
     <div class="section-label" data-i18n="intel.label">/ LATEST INTELLIGENCE</div>
     <h2 class="section-title" data-i18n="intel.title">南洋市场观察</h2>
@@ -548,6 +590,8 @@ footer.scroll-section{min-height:40vh;justify-content:center}
 
 <!-- ===== CTA ===== -->
 <section class="scroll-section" id="pro">
+  <div class="sec-overlay"></div>
+  <img src="/assets/sea-bg.jpg" alt="" class="sec-img" aria-hidden="true">
   <div class="wrap">
     <div class="cta-section">
       <div class="cta-bg"></div><div class="cta-bg2"></div>
@@ -564,6 +608,8 @@ footer.scroll-section{min-height:40vh;justify-content:center}
 
 
 <section class="scroll-section" id="latest-report" style="padding:var(--section-gap) 0">
+  <div class="sec-overlay"></div>
+  <img src="/assets/sea-tech-bg.jpg" alt="" class="sec-img" aria-hidden="true">
 <div class="wrap">
 <div class="section-label" style="text-align:center">/ LATEST REPORT</div>
 <h2 class="section-title" style="text-align:center">最新专题报告</h2>
