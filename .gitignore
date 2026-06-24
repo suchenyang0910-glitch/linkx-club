@@ -1,4 +1,15 @@
 node_modules/
-dist/
+dist/*
+!dist/index.html
+!dist/radar.html
+!dist/archive.html
+!dist/bot.html
+!dist/pro.html
+!dist/sitemap.xml
+!dist/llms.txt
+!dist/_headers
+!dist/_redirects
+!dist/_worker.js
+!dist/decoded.html
 .DS_Store
 *.local
