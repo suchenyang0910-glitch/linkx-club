@@ -1,31 +1,27 @@
-// CF Pages Worker - proxy all requests to VPS origin server
-// This bypasses stale CF Pages builds and ensures fresh content
+// CF Pages Worker - serve static assets from git (no VPS dependency)
+// Content updated via daily cron → git push → CF Pages auto-deploy
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const path = url.pathname + url.search;
     
-    // Direct proxy to VPS
-    const originUrl = 'http://143.198.192.193' + path;
+    // Try to serve from CF Pages static assets
+    try {
+      const response = await env.ASSETS.fetch(request);
+      if (response.status !== 404) {
+        const headers = new Headers(response.headers);
+        headers.set('X-Robots-Tag', 'index, follow');
+        return new Response(response.body, { status: response.status, headers });
+      }
+    } catch {}
     
-    const modifiedRequest = new Request(originUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: ['GET', 'HEAD'].includes(request.method) ? null : await request.clone().arrayBuffer(),
-    });
+    // Fallback: serve index.html for all routes (SPA-friendly)
+    try {
+      const indexResponse = await env.ASSETS.fetch(new Request(new URL('/index.html', url)));
+      const headers = new Headers(indexResponse.headers);
+      headers.set('X-Robots-Tag', 'index, follow');
+      return new Response(indexResponse.body, { status: 200, headers });
+    } catch {}
     
-    modifiedRequest.headers.set('Host', 'linkx.club');
-    
-    const response = await fetch(modifiedRequest);
-    
-    // Create response with proper headers
-    const newHeaders = new Headers(response.headers);
-    newHeaders.set('X-Robots-Tag', 'index, follow');
-    
-    return new Response(response.body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers: newHeaders,
-    });
+    return new Response('Not Found', { status: 404 });
   }
 }
