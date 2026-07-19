@@ -1,9 +1,16 @@
 // CF Pages Worker - proxy all requests to VPS origin server
-// This bypasses stale CF Pages builds and ensures fresh content
+// Also handles www→non-www redirect and sitemap generation
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    const host = url.hostname;
     const path = url.pathname + url.search;
+    
+    // www → non-www redirect (301 permanent)
+    if (host === 'www.linkx.club') {
+      url.hostname = 'linkx.club';
+      return Response.redirect(url.toString(), 301);
+    }
     
     // Direct proxy to VPS
     const originUrl = 'http://143.198.192.193' + path;
