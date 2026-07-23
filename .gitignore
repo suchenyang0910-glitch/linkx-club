@@ -10,6 +10,6 @@ dist/*
 !dist/_headers
 !dist/_redirects
 !dist/_worker.js
-!dist/decoded.html
 .DS_Store
 *.local
+decoded.html
