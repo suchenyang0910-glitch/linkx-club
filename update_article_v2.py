@@ -32,11 +32,20 @@ TAG_CONFIG = {
 
 
 def decode() -> str:
+    """读取 index.b64 并解码为 HTML。
+    
+    ⚠️ 2026-08-06 修复: 解码失败时不再 return raw（会把 base64 文本当 HTML 再编码，
+    导致 index.html 指数膨胀 4/3 倍，7-23 起从 366KB 膨胀到 7.6GB）。
+    解码失败直接抛错，宁可停也不污染。
+    """
     raw = INDEX_B64.read_text("utf-8").strip()
     try:
-        return base64.b64decode(raw).decode("utf-8")
-    except:
-        return raw
+        html = base64.b64decode(raw).decode("utf-8")
+    except Exception as e:
+        raise RuntimeError(f"index.b64 解码失败 ({e})：文件可能已损坏，请从 git 恢复健康版本后再运行。")
+    if not html.lstrip().startswith("<!DOCTYPE") and not html.lstrip().startswith("<html"):
+        raise RuntimeError("index.b64 解码结果不是 HTML，疑似双重 base64 污染。请从 git 恢复。")
+    return html
 
 
 def encode(html: str):
