@@ -215,16 +215,18 @@ def update_i18n_data(html: str, n: int, tag_label: str, meta: str, title: str, d
     else:
         print(f"  ✅ i18n 数据更新: {list(entries.keys())}")
 
-    # 重建
+    # 重建：用 body 在原 html 中的起点 m.start(2) 作前缀，
+    # 否则前缀会包含整个 body，导致 locales 对象每次被重复追加（指数膨胀）。
     new_body = body[:zh_begin] + zh_body + body[zh_end:]
-    return html[:m.end(2)] + new_body + html[m.end(2):]
+    return html[:m.start(2)] + new_body + html[m.end(2):]
 
 
 def build_and_push(skip_push: bool = False):
     print("\n🚀 Building...")
+    # Windows 下 subprocess 找不到 npm.cmd（WinError 2），直接调 node 执行 build 脚本
     r = subprocess.run(
-        ["npm", "run", "build"], cwd=PROJECT_DIR,
-        capture_output=True, text=True, timeout=60,
+        ["node", "scripts/build.js"], cwd=PROJECT_DIR,
+        capture_output=True, text=True, timeout=90,
     )
     for line in r.stdout.split("\n")[-5:]:
         if line.strip():
